@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 577e30a06f353394e8c4dc95fbdebb74, type: 3}
-  m_Name: EnemyData
+  m_Name: MeleeEnemeyData
   m_EditorClassIdentifier: 
-  movementspeed: 5
+  movementSpeed: 5
   damageToPlayer: 5
   attackCD: 1
-  attackRange: 0.5
+  attackRange: 0.75
