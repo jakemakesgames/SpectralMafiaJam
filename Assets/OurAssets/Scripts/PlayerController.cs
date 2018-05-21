@@ -10,10 +10,16 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float moveSpeed = 1;
 
+    [SerializeField] int health = 100;
+
+    bool isAlive = true;
+
     CharacterController cc;
 
     Vector3 bodyRotation;
     Vector3 turretRotation;
+
+    public bool IsAlive { get { return isAlive; } }
 
     private void Awake()
     {
@@ -66,5 +72,14 @@ public class PlayerController : MonoBehaviour
             turretRotation = Vector3.Lerp(turretRotation, targetRotation, 10 * Time.deltaTime);
         }
         transform.LookAt(transform.position + turretRotation);
+    }
+
+    public void TakeDamage(int dmg)
+    {
+        health -= dmg;
+
+        if (health < 0)
+            isAlive = false;
+        
     }
 }
