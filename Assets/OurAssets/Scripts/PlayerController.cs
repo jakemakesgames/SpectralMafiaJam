@@ -6,9 +6,11 @@ using XboxCtrlrInput;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] public XboxController controllerNumber = 0;
-    //[SerializeField] XboxButton shootButton = XboxButton.RightBumper;
+    [SerializeField] XboxButton shootButton = XboxButton.RightBumper;
+    [SerializeField] GameObject bulletPrefab;
 
     [SerializeField] float moveSpeed = 1;
+    [SerializeField] float bulletSpeed = 1;
 
     [SerializeField] int health = 100;
 
@@ -30,7 +32,21 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
 
+        if (/*throwTimer <= 0 &&*/ XCI.GetButtonDown(shootButton, controllerNumber))
+        {
+            Shoot();
+        }
+
     }
+
+    void Shoot()
+    {
+        // Create a bullet
+        GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.FromToRotation(transform.position, bodyRotation));
+        // Set the velocity
+        newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode.VelocityChange);
+    }
+
 
     void Movement()
     {
@@ -69,9 +85,9 @@ public class PlayerController : MonoBehaviour
         if (rightStickDirection.x != 0 || rightStickDirection.y != 0)
         {
             Vector3 targetRotation = rightStickDirection;
-            turretRotation = Vector3.Lerp(turretRotation, targetRotation, 10 * Time.deltaTime);
+            bodyRotation = Vector3.Lerp(bodyRotation, targetRotation, 10 * Time.deltaTime);
         }
-        transform.LookAt(transform.position + turretRotation);
+        transform.LookAt(transform.position + bodyRotation);
     }
 
     public void TakeDamage(int dmg)
