@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] EnemyData enemyScritableObject;
 
+    int a = 0;
+    
 
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float bulletSpeed;
@@ -21,6 +23,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        
         playerGO = GameObject.FindGameObjectWithTag("Player");
         attackTimer = enemyScritableObject.AttackCD;
         player = playerGO.GetComponent<PlayerController>();
@@ -47,6 +50,7 @@ public class Enemy : MonoBehaviour
                 }
                 else
                 {   
+
                     //shoot
                     
                     GameObject bullet = Instantiate(bulletPrefab, transform.position + (vecBetween.normalized * 2), transform.rotation);
