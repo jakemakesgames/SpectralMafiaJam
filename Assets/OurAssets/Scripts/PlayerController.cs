@@ -96,6 +96,6 @@ public class PlayerController : MonoBehaviour
 
         if (health < 0)
             isAlive = false;
-        
     }
+
 }

@@ -8,24 +8,26 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] EnemyData enemyScritableObject;
 
+    [SerializeField] GameObject playerGO;
+
+    [SerializeField] GameObject enemyJarPrefab;
 
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float bulletSpeed;
 
     [SerializeField] float rotationSpeed;
 
-    private GameObject playerGO;
     private PlayerController player;
     private float attackTimer;
 
+    private bool isAlive = true;
 
-    void Start()
+    void Awake()
     {
-        playerGO = GameObject.FindGameObjectWithTag("Player");
+        //playerGO = GameObject.FindGameObjectWithTag("Player"); // This function call is banned
         attackTimer = enemyScritableObject.AttackCD;
         player = playerGO.GetComponent<PlayerController>();
     }
-
 
     void Update()
     {
@@ -58,5 +60,18 @@ public class Enemy : MonoBehaviour
 
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vecBetween.normalized), rotationSpeed * Time.deltaTime);
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Bullet")
+        {
+            isAlive = false;
+            // Turn off this enemy
+            gameObject.SetActive(false);
+            // Create a enemy jar with this enemy contained in it
+            GameObject jar = Instantiate(enemyJarPrefab, transform.position, enemyJarPrefab.transform.rotation);
+            jar.GetComponent<EnemyJar>().Startup(gameObject);
+        }
     }
 }
