@@ -26,8 +26,6 @@ public class EnemyMelee : MonoBehaviour
         attackTimer += Time.deltaTime;
         Vector3 vecBetween = transform.position - playerGO.transform.position;
 
-        
-
         if (vecBetween.magnitude > data.AttackRange)
         {
             transform.position += vecBetween.normalized * data.MovementSpeed * Time.deltaTime;

@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyData : ScriptableObject
 {
     [SerializeField] float movementspeed;
-    [SerializeField] float damageToPlayer;
+    [SerializeField] int damageToPlayer;
     [SerializeField] float attackCD;
     [SerializeField] float attackRange;
 
@@ -20,7 +20,7 @@ public class EnemyData : ScriptableObject
             return movementspeed;
         }
     }
-    public float DamageToPlayer
+    public int DamageToPlayer
     {
         get
         {
