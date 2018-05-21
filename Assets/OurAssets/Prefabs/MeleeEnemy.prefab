@@ -109,7 +109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyScritableObject: {fileID: 11400000, guid: d222375354f52a0459d3675f5bb7d89b,
     type: 2}
-  playerGO: {fileID: 0}
   enemyJarPrefab: {fileID: 1440239483500832, guid: e056f769a08b096479e09cc52426ec10,
     type: 2}
   bulletPrefab: {fileID: 1655437767094304, guid: f4195a4f439827842869c2bc5d53dc4e,

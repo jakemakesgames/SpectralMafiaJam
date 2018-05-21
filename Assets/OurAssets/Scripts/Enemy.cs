@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] EnemyData enemyScritableObject;   
 
+    [SerializeField] GameObject enemyJarPrefab;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float bulletSpeed;
 
@@ -19,7 +20,6 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        
         playerGO = GameManager.Instance.PlayerGO;
         attackTimer = enemyScritableObject.AttackCD;
         player = playerGO.GetComponent<PlayerController>();
@@ -59,4 +59,15 @@ public class Enemy : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vecBetween.normalized), rotationSpeed * Time.deltaTime);
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Bullet")
+        {
+            gameObject.SetActive(false);
+            GameObject newJar = Instantiate(enemyJarPrefab, transform.position, transform.rotation);
+            newJar.GetComponent<EnemyJar>().Startup(gameObject);
+        }
+    }
+
 }
