@@ -8,10 +8,15 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] EnemyData enemyScritableObject;
 
+
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] float bulletSpeed;
+
+    [SerializeField] float rotationSpeed;
+
     private GameObject playerGO;
     private PlayerController player;
     private float attackTimer;
-    //private 
 
 
     void Start()
@@ -41,11 +46,17 @@ public class Enemy : MonoBehaviour
                     player.TakeDamage(enemyScritableObject.DamageToPlayer);
                 }
                 else
-                {
+                {   
                     //shoot
+                    
+                    GameObject bullet = Instantiate(bulletPrefab, transform.position + (vecBetween.normalized * 2), transform.rotation);
+                    bullet.GetComponent<Rigidbody>().AddForce(vecBetween.normalized * bulletSpeed, ForceMode.VelocityChange);
+                    
                 }
             }
         }
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vecBetween.normalized), rotationSpeed * Time.deltaTime);
 
     }
 }
