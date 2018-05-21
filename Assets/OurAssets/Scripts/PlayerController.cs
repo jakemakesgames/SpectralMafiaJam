@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public XboxController controllerNumber = 0;
     [SerializeField] XboxButton shootButton = XboxButton.RightBumper;
     [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Transform bulletSpawnPos;
 
     [SerializeField] float moveSpeed = 1;
     [SerializeField] float bulletSpeed = 1;
@@ -41,9 +42,9 @@ public class PlayerController : MonoBehaviour
     void Shoot()
     {
         // Create a bullet
-        GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.FromToRotation(transform.position, bodyRotation));
+        GameObject newBullet = Instantiate(bulletPrefab, bulletSpawnPos.position, transform.rotation);
         // Set the velocity
-        newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode.VelocityChange);
+        newBullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
     }
 
 
