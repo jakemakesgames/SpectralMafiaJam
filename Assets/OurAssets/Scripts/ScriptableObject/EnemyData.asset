@@ -11,5 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577e30a06f353394e8c4dc95fbdebb74, type: 3}
   m_Name: EnemyData
   m_EditorClassIdentifier: 
-  movementspeed: 0
-  damageToPlayer: 0
+  movementspeed: 5
+  damageToPlayer: 5
+  attackCD: 1
+  attackRange: 0.5
