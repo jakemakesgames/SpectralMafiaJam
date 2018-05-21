@@ -7,22 +7,24 @@ public class EnemyMelee : MonoBehaviour
 
     [SerializeField] EnemyData data;
 
-    private GameObject player;
+    private GameObject playerGO;
+    private PlayerController player;
     private float attackTimer;
 
 
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        playerGO = GameObject.FindGameObjectWithTag("Player");
         attackTimer = data.AttackCD;
+        player = playerGO.GetComponent<PlayerController>();
     }
 
 
     void Update()
     {
         attackTimer += Time.deltaTime;
-        Vector3 vecBetween = transform.position - player.transform.position;
+        Vector3 vecBetween = transform.position - playerGO.transform.position;
 
         
 
@@ -35,6 +37,7 @@ public class EnemyMelee : MonoBehaviour
             if(attackTimer > data.AttackCD)
             {
                 attackTimer = 0;
+                player.TakeDamage(data.DamageToPlayer);
             }
         }
 
