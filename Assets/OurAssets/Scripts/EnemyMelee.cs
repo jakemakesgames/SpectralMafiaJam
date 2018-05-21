@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyMelee : MonoBehaviour
 {
 
@@ -24,7 +25,7 @@ public class EnemyMelee : MonoBehaviour
     void Update()
     {
         attackTimer += Time.deltaTime;
-        Vector3 vecBetween = transform.position - playerGO.transform.position;
+        Vector3 vecBetween = playerGO.transform.position - transform.position;
 
         if (vecBetween.magnitude > data.AttackRange)
         {
@@ -32,7 +33,7 @@ public class EnemyMelee : MonoBehaviour
         }
         else
         {
-            if(attackTimer > data.AttackCD)
+            if (attackTimer > data.AttackCD)
             {
                 attackTimer = 0;
                 player.TakeDamage(data.DamageToPlayer);

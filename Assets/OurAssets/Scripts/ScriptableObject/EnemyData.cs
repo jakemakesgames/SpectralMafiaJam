@@ -38,7 +38,7 @@ public class EnemyData : ScriptableObject
     {
         get
         {
-            return AttackRange;
+            return attackRange;
         }
     }
     #endregion
