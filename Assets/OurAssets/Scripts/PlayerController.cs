@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     CharacterController cc;
 
     Vector3 bodyRotation;
-    Vector3 turretRotation;
 
     public bool IsAlive { get { return isAlive; } }
 
