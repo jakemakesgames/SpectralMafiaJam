@@ -5,11 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
-    [SerializeField] EnemyData enemyScritableObject;
-
-    int a = 0;
-    
+    [SerializeField] EnemyData enemyScritableObject;   
 
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float bulletSpeed;
@@ -24,7 +20,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         
-        playerGO = GameObject.FindGameObjectWithTag("Player");
+        playerGO = GameManager.Instance.PlayerGO;
         attackTimer = enemyScritableObject.AttackCD;
         player = playerGO.GetComponent<PlayerController>();
     }

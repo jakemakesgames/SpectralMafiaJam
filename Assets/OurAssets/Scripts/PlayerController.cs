@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform bulletSpawnPos;
 
     [SerializeField] float moveSpeed = 1;
+    [SerializeField] float fallSpeed = 1;
     [SerializeField] float bulletSpeed = 1;
 
     [SerializeField] int health = 100;
@@ -50,6 +51,9 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
+        // Make the player fall
+        cc.Move(new Vector3(0, -fallSpeed * Time.deltaTime, 0));
+
         Vector3 leftStickDirection = Vector3.zero;
         //// PC Movement
         //if (Input.GetKey(KeyCode.W))

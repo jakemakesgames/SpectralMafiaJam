@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    private GameObject playerGO;
+    public GameObject PlayerGO { get { return playerGO; } }
+
+    public int playerCount = 1;
+
     private Image fadeImage;
     public enum GameState
     {
@@ -35,8 +40,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private GameObject player;
-
     void Awake()
     {
         if (instance == null)
@@ -48,7 +51,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         currentGameState = GameState.MENU_STATE;
-        player = GameObject.FindGameObjectWithTag("Player");
+        playerGO = GameObject.FindGameObjectWithTag("Player");
         firstUpdate = true;
         changeCamColour = false;
     }
