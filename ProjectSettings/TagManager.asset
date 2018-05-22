@@ -10,6 +10,7 @@ TagManager:
   - Wall
   - Melee Spawn
   - Ranged Spawn
+  - Levels
   layers:
   - Default
   - TransparentFX
