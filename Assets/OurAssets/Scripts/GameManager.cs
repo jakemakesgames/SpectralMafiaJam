@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -107,8 +108,23 @@ public class GameManager : MonoBehaviour
 
             if (fadeImage.color.a >= 1f)
             {
-                LoadLevel();
+                if (player2Controller != null)
+                {
+                    if (player1Controller.IsAlive == false && player2Controller.IsAlive == false)
+                    {
+                        SceneManager.LoadScene(0);
+                    }
+                }
+                else
+                {
+                    if (player1Controller.IsAlive == false)
+                    {
+                        SceneManager.LoadScene(0);
+                    }
+                }
+
                 StartCoroutine(Fade());
+                LoadLevel();
                 fadeOut = false;
             }
         }
@@ -152,7 +168,6 @@ public class GameManager : MonoBehaviour
         {
             if (player1Controller.IsAlive == false && player2Controller.IsAlive == false)
             {
-                currentLevelCount--;
                 ChangeLevel();
             }
         }
@@ -160,7 +175,6 @@ public class GameManager : MonoBehaviour
         {
             if (player1Controller.IsAlive == false)
             {
-                currentLevelCount--;
                 ChangeLevel();
             }
         }
@@ -201,6 +215,7 @@ public class GameManager : MonoBehaviour
         fadeOut = false;
         fadeInAndOutTime = 0;
     }
+
 
     public void Player1Button()
     {
