@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] public XboxController controllerNumber = 0;
     [SerializeField] XboxButton shootButton = XboxButton.RightBumper;
+    [SerializeField] XboxButton pauseButton = XboxButton.Start;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform bulletSpawnTransform;
 
@@ -88,9 +89,14 @@ public class PlayerController : MonoBehaviour
 
         UpdateLineRenderer();
 
+        if (XCI.GetButton(pauseButton, controllerNumber))
+        {
+            GameManager.Instance.Pause();
+        }
+
         canShoot = Physics.CheckSphere(bulletSpawnTransform.position - bulletSpawnTransform.forward * 0.5f, 0.5f, LayerMask.GetMask("Collider")) == false;
 
-        if (canShoot && shootTimer <= 0 && XCI.GetButtonDown(shootButton, controllerNumber))
+        if (canShoot && shootTimer <= 0 && (XCI.GetButtonDown(shootButton, controllerNumber) || XCI.GetAxis(XboxAxis.RightTrigger, controllerNumber) > 0))
             Shoot();
         else
             shootTimer -= Time.deltaTime;

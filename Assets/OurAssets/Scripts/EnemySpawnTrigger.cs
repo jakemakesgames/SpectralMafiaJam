@@ -57,14 +57,18 @@ public class EnemySpawnTrigger : MonoBehaviour
             if (meleeSpawnCount > 0)
             {
                 meleeSpawnCount--;
-                Instantiate(meleeEnemyPrefab, meleeSpawns[i].position, meleeEnemyPrefab.transform.rotation);
+                GameObject newEnemy = Instantiate(meleeEnemyPrefab, GameManager.Instance.CurrentLevel.transform);
+                newEnemy.transform.position = meleeSpawns[i].position;
+                newEnemy.transform.rotation = meleeEnemyPrefab.transform.rotation;
             }
 
         for (int i = 0; i < rangedSpawns.Count; i++)
             if (rangedSpawnCount > 0)
             {
                 rangedSpawnCount--;
-                Instantiate(rangedEnemyPrefab, rangedSpawns[i].position, rangedEnemyPrefab.transform.rotation);
+                GameObject newEnemy = Instantiate(rangedEnemyPrefab, GameManager.Instance.CurrentLevel.transform);
+                newEnemy.transform.position = rangedSpawns[i].position;
+                newEnemy.transform.rotation = rangedEnemyPrefab.transform.rotation;
             }
 
     }
