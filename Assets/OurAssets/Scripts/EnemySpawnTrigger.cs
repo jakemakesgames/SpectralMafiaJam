@@ -53,7 +53,7 @@ public class EnemySpawnTrigger : MonoBehaviour
         spawnTimer = spawnTime;
 
         // Try to spawn a enemy at each spawn point
-        for (int i = 0; i < rangedSpawns.Count; i++)
+        for (int i = 0; i < meleeSpawns.Count; i++)
             if (meleeSpawnCount > 0)
             {
                 meleeSpawnCount--;
