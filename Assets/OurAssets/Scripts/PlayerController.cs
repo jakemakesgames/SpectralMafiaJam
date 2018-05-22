@@ -2,9 +2,12 @@
 //using System.Collections.Generic;
 using UnityEngine;
 using XboxCtrlrInput;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+
+
     [SerializeField] public XboxController controllerNumber = 0;
     [SerializeField] XboxButton shootButton = XboxButton.RightBumper;
     [SerializeField] GameObject bulletPrefab;
@@ -30,6 +33,11 @@ public class PlayerController : MonoBehaviour
 
     Vector3 bodyRotation;
 
+    private Slider healthSlider;
+    private Text ammoText;
+
+    private float maxHealth;
+
     float shootTimer;
 
     int jarCount;
@@ -47,6 +55,15 @@ public class PlayerController : MonoBehaviour
         jarCount = maxJars;
 
         lineRenderer = bulletSpawnTransform.GetComponent<LineRenderer>();
+
+        healthSlider = transform.Find("Player Canvas").gameObject.GetComponentInChildren<Slider>();
+        ammoText = transform.Find("Player Canvas").Find("Ammo").gameObject.GetComponent<Text>();
+
+        maxHealth = health;
+        healthSlider.maxValue = maxHealth;
+
+
+
     }
 
     private void Update()
@@ -64,6 +81,10 @@ public class PlayerController : MonoBehaviour
             Shoot();
         else
             shootTimer -= Time.deltaTime;
+
+        healthSlider.value = health;
+        ammoText.text = "Ammo: " + jarCount;
+
     }
 
     void UpdateLineRenderer()
@@ -72,7 +93,6 @@ public class PlayerController : MonoBehaviour
         // Ray cast
         Ray ray = new Ray(bulletSpawnTransform.position - bulletSpawnTransform.forward * 1f, bulletSpawnTransform.forward);
         RaycastHit hitInfo = new RaycastHit();
-        Debug.Log(LayerMask.GetMask("Collider"));
         if (canShoot && Physics.Raycast(ray, out hitInfo, 1000, LayerMask.GetMask("Collider", "Enemy")))
         {
             lineRenderer.enabled = true;
