@@ -38,13 +38,13 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         attackTimer += Time.deltaTime;
-        Vector3 vecBetween1 = player1GO.transform.position - transform.position;
+        Vector3 vecBetween1 = player1GO.transform.position - bulletSpawnTransform.position;
         Vector3 vecBetween = Vector3.zero;
         PlayerController playerToAttack = null;
 
         if (player2GO != null && player2.IsAlive)
         {
-            Vector3 vecBetween2 = player2GO.transform.position - transform.position;
+            Vector3 vecBetween2 = player2GO.transform.position - bulletSpawnTransform.position;
             if (player1.IsAlive && vecBetween1.magnitude < vecBetween2.magnitude)
             {
                 vecBetween = vecBetween1;
