@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         GAME_STATE,
-        GAMEOVER_STATE
+        GAMEOVER_STATE,
+        PAUSE_STATE
     };
 
 
@@ -44,6 +45,8 @@ public class GameManager : MonoBehaviour
 
     private bool setupByMenu = false;
     private float fadeInAndOutTime;
+
+    private Canvas pauseCanvas;
 
     #region gets and sets
     public GameState CurrentGameState
@@ -89,6 +92,8 @@ public class GameManager : MonoBehaviour
             player1GO = GameObject.FindGameObjectWithTag("Player");
         fadeInAndOutTime = 0;
         restartGame = false;
+
+        pauseCanvas = GameObject.Find("PauseCanvas").GetComponent<Canvas>();
     }
 
 
@@ -146,6 +151,9 @@ public class GameManager : MonoBehaviour
             case GameState.GAMEOVER_STATE:
                 UpdateGameOverState();
                 break;
+            case GameState.PAUSE_STATE:
+                UpdatePause();
+                break;
 
             default:
                 Assert.IsTrue(true, "GameState is default");
@@ -153,6 +161,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    private void UpdatePause()
+    {
+
+    }
 
     private void UpdateGameState()
     {
@@ -263,7 +276,20 @@ public class GameManager : MonoBehaviour
     
     public void Pause()
     {
+        if (currentLevel != levels.transform.GetChild(0).gameObject)
+        {
+            if (currentGameState == GameState.GAME_STATE)
+            {
+                pauseCanvas.enabled = true;
+                currentGameState = GameState.PAUSE_STATE;
 
+            }
+            else if (currentGameState == GameState.PAUSE_STATE)
+            {
+                pauseCanvas.enabled = false;
+                currentGameState = GameState.GAME_STATE;
+            }
+        }
     }
 
 
