@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public enum GameState
     {
-        MENU_STATE,
         GAME_STATE,
         GAMEOVER_STATE
     };
@@ -35,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     private int currentLevelCount;
     private static GameManager instance;
+    private FollowObjects camScript;
 
     private bool setupByMenu = false;
     private float fadeInAndOutTime;
@@ -66,6 +66,13 @@ public class GameManager : MonoBehaviour
         }
         else
             Destroy(gameObject);
+
+        camScript = GameObject.FindGameObjectWithTag("MainCamera").transform.parent.GetComponent<FollowObjects>();
+
+        if (camScript == null)
+        {
+            camScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowObjects>();
+        }
 
         firstUpdate = true;
         fadeOut = false;
@@ -111,9 +118,6 @@ public class GameManager : MonoBehaviour
 
         switch (currentGameState)
         {
-            case GameState.MENU_STATE:
-                UpdateMenuState();
-                break;
             case GameState.GAME_STATE:
                 UpdateGameState();
                 break;
@@ -126,13 +130,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void UpdateMenuState()
-    {
-        if (firstUpdate == true)
-        {
-            firstUpdate = false;
-        }
-    }
 
     private void UpdateGameState()
     {
@@ -164,7 +161,7 @@ public class GameManager : MonoBehaviour
             player1GO.transform.position = currentLevel.transform.GetChild(0).position;
             if (player2GO != null)
             {
-                player2GO.transform.position = currentLevel.transform.GetChild(0).position;
+                player2GO.transform.position = currentLevel.transform.GetChild(1).position;
             }
         }
     }
@@ -187,6 +184,7 @@ public class GameManager : MonoBehaviour
     {
         player1GO = Instantiate(player1Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
         player2GO = Instantiate(player2Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
+        //camScript.
         ChangeLevel();
     }
 
