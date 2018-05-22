@@ -8,11 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public XboxController controllerNumber = 0;
     [SerializeField] XboxButton shootButton = XboxButton.RightBumper;
     [SerializeField] GameObject bulletPrefab;
-    [SerializeField] Transform bulletSpawnPos;
+    [SerializeField] Transform bulletSpawnTransform;
 
     [SerializeField] ParticleSystem shootParticle;
-
-    [SerializeField] Animator animator;
 
     [SerializeField] float moveSpeed = 1;
     [SerializeField] float rotateSpeed = 5;
@@ -27,12 +25,16 @@ public class PlayerController : MonoBehaviour
     bool isAlive = true;
 
     CharacterController cc;
+    LineRenderer lineRenderer;
+    Animator animator;
 
     Vector3 bodyRotation;
 
     float shootTimer;
 
     int jarCount;
+
+    bool canShoot;
 
     public bool IsAlive { get { return isAlive; } }
 
@@ -43,17 +45,44 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         jarCount = maxJars;
+
+        lineRenderer = bulletSpawnTransform.GetComponent<LineRenderer>();
     }
 
     private void Update()
     {
         Movement();
 
+        UpdateLineRenderer();
+
         if (shootTimer <= 0 && XCI.GetButtonDown(shootButton, controllerNumber))
             Shoot();
         else
             shootTimer -= Time.deltaTime;
     }
+
+    void UpdateLineRenderer()
+    {
+
+        lineRenderer.SetPosition(0, bulletSpawnTransform.position);
+        // Ray cast
+        Ray ray = new Ray(bulletSpawnTransform.position - bulletSpawnTransform.forward * 1f, bulletSpawnTransform.forward);
+        RaycastHit hitInfo = new RaycastHit();
+        Debug.Log(LayerMask.GetMask("Collider"));
+        canShoot = Physics.CheckSphere(bulletSpawnTransform.position, 0.5f, LayerMask.GetMask("Collider")) == false && Physics.Raycast(ray, out hitInfo, LayerMask.GetMask("Collider", "Enemy"));
+        if (canShoot)
+        {
+            lineRenderer.enabled = true;
+            lineRenderer.SetPosition(1, hitInfo.point);
+        }
+        else
+        {
+            lineRenderer.enabled = false;
+            // Set a default pos if the ray didn't hit
+            //lineRenderer.SetPosition(1, bulletSpawnPos.position + bulletSpawnPos.forward * 1000);
+        }
+    }
+
 
     void Shoot()
     {
@@ -67,7 +96,7 @@ public class PlayerController : MonoBehaviour
             jarCount--;
             shootTimer = shootCooldown;
             // Create a bullet
-            GameObject newBullet = Instantiate(bulletPrefab, bulletSpawnPos.position, transform.rotation);
+            GameObject newBullet = Instantiate(bulletPrefab, bulletSpawnTransform.position, transform.rotation);
             // Set the velocity
             newBullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
         }
