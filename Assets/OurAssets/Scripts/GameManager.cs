@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     private PlayerController player1Controller;
     private PlayerController player2Controller;
 
+    private bool restartGame;
 
     private Image fadeImage;
     [SerializeField] GameState currentGameState;
@@ -85,6 +86,7 @@ public class GameManager : MonoBehaviour
         if (setupByMenu == false && currentGameState == GameState.GAME_STATE)
             player1GO = GameObject.FindGameObjectWithTag("Player");
         fadeInAndOutTime = 0;
+        restartGame = false;
     }
 
 
@@ -92,7 +94,7 @@ public class GameManager : MonoBehaviour
     {
         fadeOut = true;
         currentLevelCount++;
-        fadeImage.color = new Color(0.0f, 0.0f, 0.0f, 0.051f);
+        //  fadeImage.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
         camScript.Stop();
         Debug.Log("changing scene");
     }
@@ -104,37 +106,33 @@ public class GameManager : MonoBehaviour
         if (fadeOut)
         {
             fadeInAndOutTime += fadeInSpeed * Time.deltaTime;
-            fadeImage.color = new Color(0.0f, 0.0f, 0.0f, Mathf.Lerp(0, 1, fadeInAndOutTime));
+            fadeImage.color = new Color(0.0f, 0.0f, 0.0f, fadeInAndOutTime);
 
             if (fadeImage.color.a >= 1f)
             {
-                if (player2Controller != null)
+                if (restartGame == true)
                 {
-                    if (player1Controller.IsAlive == false && player2Controller.IsAlive == false)
-                    {
-                        SceneManager.LoadScene(0);
-                    }
+                    SceneManager.LoadScene(0);
                 }
                 else
                 {
-                    if (player1Controller.IsAlive == false)
-                    {
-                        SceneManager.LoadScene(0);
-                    }
+                    StartCoroutine(Fade());
+                    LoadLevel();
                 }
-
-                StartCoroutine(Fade());
-                LoadLevel();
-                fadeOut = false;
             }
+
+
+
         }
+
         if (fadeIn)
         {
-            fadeInAndOutTime += fadeOutSpeed * Time.deltaTime;
-            fadeImage.color = new Color(0.0f, 0.0f, 0.0f, Mathf.Lerp(1, 0, fadeInAndOutTime));
+            fadeInAndOutTime -= fadeOutSpeed * Time.deltaTime;
+            fadeImage.color = new Color(0.0f, 0.0f, 0.0f, fadeInAndOutTime);
             if (fadeImage.color.a <= 0)
             {
                 fadeIn = false;
+                fadeInAndOutTime = 0;
             }
         }
 
@@ -164,18 +162,23 @@ public class GameManager : MonoBehaviour
             firstUpdate = false;
         }
 
-        if (player2Controller != null)
+        if (player1Controller != null)
         {
-            if (player1Controller.IsAlive == false && player2Controller.IsAlive == false)
+            if (player2Controller != null)
             {
-                ChangeLevel();
+                if (player1Controller.IsAlive == false && player2Controller.IsAlive == false)
+                {
+                    ChangeLevel();
+                    restartGame = true;
+                }
             }
-        }
-        else
-        {
-            if (player1Controller.IsAlive == false)
+            else
             {
-                ChangeLevel();
+                if (player1Controller.IsAlive == false)
+                {
+                    ChangeLevel();
+                    restartGame = true;
+                }
             }
         }
 
@@ -213,7 +216,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         fadeIn = true;
         fadeOut = false;
-        fadeInAndOutTime = 0;
     }
 
 
@@ -241,7 +243,7 @@ public class GameManager : MonoBehaviour
     public void Exit()
     {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
     }
