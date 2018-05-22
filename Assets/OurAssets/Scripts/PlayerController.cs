@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
     Vector3 bodyRotation;
 
     Slider healthSlider;
-    Text ammoText;
 
     int maxHealth;
     float shootTimer;
@@ -71,7 +70,7 @@ public class PlayerController : MonoBehaviour
         lineRenderer = bulletSpawnTransform.GetComponent<LineRenderer>();
 
         healthSlider = transform.Find("Player Canvas").gameObject.GetComponentInChildren<Slider>();
-        ammoText = transform.Find("Player Canvas").Find("Ammo").gameObject.GetComponent<Text>();
+
 
         maxHealth = health;
         healthSlider.maxValue = maxHealth;
@@ -94,7 +93,7 @@ public class PlayerController : MonoBehaviour
             shootTimer -= Time.deltaTime;
 
         healthSlider.value = health;
-        ammoText.text = "Ammo: " + jarCount;
+
 
     }
 
