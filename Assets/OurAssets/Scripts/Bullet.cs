@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
             {
                 other.gameObject.SetActive(false);
                 GameObject newJar = Instantiate(enemyJarPrefab, transform.position, enemyJarPrefab.transform.rotation);
-                newJar.GetComponent<EnemyJar>().Startup(gameObject);
+                newJar.GetComponent<EnemyJar>().Startup(other.gameObject);
             }
 
             // Do some particles

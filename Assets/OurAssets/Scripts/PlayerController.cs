@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
-
     [SerializeField] public XboxController controllerNumber = 0;
     [SerializeField] XboxButton shootButton = XboxButton.RightBumper;
     [SerializeField] GameObject bulletPrefab;
@@ -25,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] int health = 100;
 
+    [SerializeField] int pickUpHealth = 10;
+
     bool isAlive = true;
 
     CharacterController cc;
@@ -33,18 +33,32 @@ public class PlayerController : MonoBehaviour
 
     Vector3 bodyRotation;
 
-    private Slider healthSlider;
-    private Text ammoText;
+    Slider healthSlider;
+    Text ammoText;
 
-    private float maxHealth;
-
+    int maxHealth;
     float shootTimer;
-
     int jarCount;
-
     bool canShoot;
 
-    public bool IsAlive { get { return isAlive; } }
+    public bool IsAlive { get { return isAlive; } set { isAlive = value; } }
+
+    public void ResetValues()
+    {
+        health = maxHealth;
+        isAlive = true;
+        shootTimer = 0;
+        jarCount = maxJars;
+
+        cc.enabled = true;
+        lineRenderer.enabled = true;
+    }
+
+    public void PlayDead()
+    {
+        cc.enabled = false;
+        lineRenderer.enabled = false;
+    }
 
     private void Awake()
     {
@@ -61,9 +75,6 @@ public class PlayerController : MonoBehaviour
 
         maxHealth = health;
         healthSlider.maxValue = maxHealth;
-
-
-
     }
 
     private void Update()
@@ -106,7 +117,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     void Shoot()
     {
         if (jarCount > 0)
@@ -124,7 +134,6 @@ public class PlayerController : MonoBehaviour
             newBullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
         }
     }
-
 
     void Movement()
     {
@@ -184,6 +193,10 @@ public class PlayerController : MonoBehaviour
             jarCount++;
             if (empty == false)
             {
+                health += pickUpHealth;
+                if (health > maxHealth) health = maxHealth;
+                jarCount++;
+                if (jarCount > maxJars) jarCount = maxJars;
                 // Kill count ++
             }
             return true;
