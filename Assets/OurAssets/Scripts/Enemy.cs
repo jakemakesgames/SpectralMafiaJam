@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
     private GameObject player2GO;
     private PlayerController player1;
     private PlayerController player2;
+    private Animator animator;
+
     private float attackTimer;
 
     void Start()
@@ -29,6 +31,8 @@ public class Enemy : MonoBehaviour
         player1 = player1GO.GetComponent<PlayerController>();
         if (player2GO != null)
             player2 = player2GO.GetComponent<PlayerController>();
+
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -79,6 +83,7 @@ public class Enemy : MonoBehaviour
                         // If we are melee
                         if (enemyScritableObject.Ranged == false)
                         {
+                            animator.SetTrigger("Attack");
                             playerToAttack.TakeDamage(enemyScritableObject.DamageToPlayer);
                         }
                         else // Shoot
