@@ -139,6 +139,15 @@ public class GameManager : MonoBehaviour
         currentLevel.SetActive(false);
         currentLevel = levels.transform.GetChild(currentLevelCount).gameObject;
         currentLevel.SetActive(true);
+
+        if(player1GO != null)
+        {
+            player1GO.transform.position = currentLevel.transform.GetChild(0).position;
+            if(player2GO != null)
+            {
+                player2GO.transform.position = currentLevel.transform.GetChild(0).position;
+            }
+        }
     }
 
 }
