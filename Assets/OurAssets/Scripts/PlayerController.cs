@@ -11,9 +11,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform bulletSpawnTransform;
 
+    [SerializeField] GameObject backPack;
     [SerializeField] ParticleSystem shootParticle;
 
     [SerializeField] float moveSpeed = 1;
+    [SerializeField] float sprintSpeed = 8;
     [SerializeField] float rotateSpeed = 5;
     [SerializeField] float fallSpeed = 1;
     [SerializeField] float bulletSpeed = 1;
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
     CharacterController cc;
     LineRenderer lineRenderer;
     Animator animator;
+
 
     Vector3 bodyRotation;
 
@@ -93,8 +96,6 @@ public class PlayerController : MonoBehaviour
             shootTimer -= Time.deltaTime;
 
         healthSlider.value = health;
-
-
     }
 
     void UpdateLineRenderer()
@@ -116,6 +117,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void JarCountUpdate()
+    {
+        for (int i = backPack.transform.childCount; i > 0; i--)
+        {
+            backPack.transform.GetChild(i - 1).gameObject.SetActive(jarCount >= i);
+        }
+    }
+
     void Shoot()
     {
         if (jarCount > 0)
@@ -131,6 +140,8 @@ public class PlayerController : MonoBehaviour
             GameObject newBullet = Instantiate(bulletPrefab, bulletSpawnTransform.position, transform.rotation);
             // Set the velocity
             newBullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
+
+            JarCountUpdate();
         }
     }
 
@@ -155,8 +166,6 @@ public class PlayerController : MonoBehaviour
         leftStickDirection.z = XCI.GetAxis(XboxAxis.LeftStickY, controllerNumber);
         // Make sure the movement is normalized
         leftStickDirection = leftStickDirection.normalized;
-        // Move the player
-        cc.Move(leftStickDirection * moveSpeed * Time.deltaTime);
 
         // Right stick
         Vector3 rightStickDirection = Vector3.zero;
@@ -164,13 +173,18 @@ public class PlayerController : MonoBehaviour
         rightStickDirection.z = XCI.GetAxis(XboxAxis.RightStickY, controllerNumber);
 
         Vector3 targetRotation = leftStickDirection;
+        bool sprint = true;
         // Prioritize right stick for rotation
         if (rightStickDirection.x != 0 || rightStickDirection.z != 0)
         {
             targetRotation = rightStickDirection;
+            sprint = false;
         }
         bodyRotation = Vector3.Lerp(bodyRotation, targetRotation, rotateSpeed * Time.deltaTime);
+        // Rotate the player
         transform.LookAt(transform.position + bodyRotation);
+        // Move the player
+        cc.Move(leftStickDirection * (sprint ? sprintSpeed : moveSpeed) * Time.deltaTime);
     }
 
     public void TakeDamage(int dmg)
@@ -187,9 +201,10 @@ public class PlayerController : MonoBehaviour
 
     public bool PickUpJar(bool empty)
     {
-        if (jarCount < maxJars)
+        //if (jarCount < maxJars)
         {
             jarCount++;
+            // Do some extra stuff if the jar isn't empty
             if (empty == false)
             {
                 health += pickUpHealth;
@@ -198,12 +213,13 @@ public class PlayerController : MonoBehaviour
                 if (jarCount > maxJars) jarCount = maxJars;
                 // Kill count ++
             }
+            JarCountUpdate();
             return true;
         }
-        else
-        {
-            return false;
-        }
+        //else
+        //{
+        //    return false;
+        //}
     }
 
 }
