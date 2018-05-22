@@ -280,12 +280,14 @@ public class GameManager : MonoBehaviour
         {
             if (currentGameState == GameState.GAME_STATE)
             {
+                Time.timeScale = 0;
                 pauseCanvas.enabled = true;
                 currentGameState = GameState.PAUSE_STATE;
 
             }
             else if (currentGameState == GameState.PAUSE_STATE)
             {
+                Time.timeScale = 1;
                 pauseCanvas.enabled = false;
                 currentGameState = GameState.GAME_STATE;
             }
