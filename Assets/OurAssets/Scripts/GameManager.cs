@@ -148,10 +148,21 @@ public class GameManager : MonoBehaviour
             firstUpdate = false;
         }
 
-        if (player1Controller.IsAlive == false && player2Controller.IsAlive == false)
+        if (player2Controller != null)
         {
-            currentLevelCount--;
-            ChangeLevel();
+            if (player1Controller.IsAlive == false && player2Controller.IsAlive == false)
+            {
+                currentLevelCount--;
+                ChangeLevel();
+            }
+        }
+        else
+        {
+            if (player1Controller.IsAlive == false)
+            {
+                currentLevelCount--;
+                ChangeLevel();
+            }
         }
 
     }
@@ -214,9 +225,9 @@ public class GameManager : MonoBehaviour
 
     public void Exit()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+#endif
         Application.Quit();
     }
 
