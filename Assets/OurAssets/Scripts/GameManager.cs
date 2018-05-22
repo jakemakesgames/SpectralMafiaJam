@@ -13,9 +13,12 @@ public class GameManager : MonoBehaviour
         GAMEOVER_STATE
     };
 
-    
+
     [SerializeField] float fadeInSpeed;
     [SerializeField] float fadeOutSpeed;
+
+    [SerializeField] GameObject player1Prefab;
+    [SerializeField] GameObject player2Prefab;
 
     private GameObject player1GO;
     private GameObject player2GO;
@@ -50,8 +53,8 @@ public class GameManager : MonoBehaviour
         }
     }
     public static GameManager Instance { get { return instance; } }
-    public GameObject Player1GO { get { return player1GO; } set { player1GO = value; setupByMenu = true; } }
-    public GameObject Player2GO { get { return player2GO; } set { player2GO = value; setupByMenu = true; } }
+    public GameObject Player1GO { get { return player1GO; } }
+    public GameObject Player2GO { get { return player2GO; } }
     #endregion
 
     void Awake()
@@ -90,17 +93,17 @@ public class GameManager : MonoBehaviour
             fadeInAndOutTime += fadeInSpeed * Time.deltaTime;
             fadeImage.color = new Color(0.0f, 0.0f, 0.0f, (float)Mathf.Lerp(0, 1, fadeInAndOutTime));
 
-            if(fadeImage.color.a >= 1f)
+            if (fadeImage.color.a >= 1f)
             {
                 LoadLevel();
                 StartCoroutine(Fade());
             }
         }
-        if(fadeIn)
+        if (fadeIn)
         {
             fadeInAndOutTime += fadeOutSpeed * Time.deltaTime;
             fadeImage.color = new Color(0.0f, 0.0f, 0.0f, Mathf.Lerp(1, 0, fadeInAndOutTime));
-            if(fadeImage.color.a <= 0)
+            if (fadeImage.color.a <= 0)
             {
                 fadeIn = false;
             }
@@ -137,7 +140,7 @@ public class GameManager : MonoBehaviour
         {
 
             fadeImage = GameObject.Find("FadePanel").GetComponent<Image>();
-            levels = GameObject.Find("Levels");
+            levels = GameObject.FindGameObjectWithTag("Levels");
             currentLevel = levels.transform.GetChild(0).gameObject;
             firstUpdate = false;
         }
@@ -156,16 +159,16 @@ public class GameManager : MonoBehaviour
         currentLevel = levels.transform.GetChild(currentLevelCount).gameObject;
         currentLevel.SetActive(true);
 
-        if(player1GO != null)
+        if (player1GO != null)
         {
             player1GO.transform.position = currentLevel.transform.GetChild(0).position;
-            if(player2GO != null)
+            if (player2GO != null)
             {
                 player2GO.transform.position = currentLevel.transform.GetChild(0).position;
             }
         }
     }
-    
+
     IEnumerator Fade()
     {
         yield return new WaitForSeconds(1f);
@@ -174,6 +177,25 @@ public class GameManager : MonoBehaviour
         fadeInAndOutTime = 0;
     }
 
+    public void Player1Button()
+    {
+        player1GO = Instantiate(player1Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
+        ChangeLevel();
+    }
 
+    public void Player2Button()
+    {
+        player1GO = Instantiate(player1Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
+        player2GO = Instantiate(player2Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
+        ChangeLevel();
+    }
+
+    public void Exit()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+        Application.Quit();
+    }
 
 }
