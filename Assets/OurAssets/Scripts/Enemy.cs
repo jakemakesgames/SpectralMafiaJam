@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         player1GO = GameManager.Instance.Player1GO;
-        player2GO = GameManager.Instance.Player1GO;
+        player2GO = GameManager.Instance.Player2GO;
         attackTimer = enemyScritableObject.AttackCD;
         player1 = player1GO.GetComponent<PlayerController>();
     }

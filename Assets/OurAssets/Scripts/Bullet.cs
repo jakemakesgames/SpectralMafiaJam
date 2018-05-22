@@ -7,6 +7,11 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] GameObject destroyParticlesPrefab = null;
 
+    private void Awake()
+    {
+        Destroy(gameObject, 20);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Wall" || other.tag == "Enemy")

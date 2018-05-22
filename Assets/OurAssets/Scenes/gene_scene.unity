@@ -314,6 +314,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 4715819367535638, guid: 0dd630b098cd6604cbd36f50e0c980ff, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1.061
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0dd630b098cd6604cbd36f50e0c980ff, type: 2}
   m_IsPrefabParent: 0
@@ -503,7 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objects:
-  - {fileID: 1768088126}
+  - {fileID: 2122017910}
   speed: 5
 --- !u!1 &1209854505
 GameObject:
@@ -711,6 +715,11 @@ Prefab:
     - target: {fileID: 4872590119736730, guid: ed4f1100735630b47b2443f4e79ac4c7, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114278650638611598, guid: ed4f1100735630b47b2443f4e79ac4c7,
+        type: 2}
+      propertyPath: currentGameState
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed4f1100735630b47b2443f4e79ac4c7, type: 2}
@@ -961,6 +970,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c2396f507129a2541b39b21eb11fa6b6, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2122017910 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1906738927127704, guid: 0dd630b098cd6604cbd36f50e0c980ff,
+    type: 2}
+  m_PrefabInternal: {fileID: 205388772}
 --- !u!1 &2126696580
 GameObject:
   m_ObjectHideFlags: 0

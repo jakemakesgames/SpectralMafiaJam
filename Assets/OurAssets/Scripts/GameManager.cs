@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     private GameObject player2GO;
 
     private Image fadeImage;
-    private GameState currentGameState;
+    [SerializeField] GameState currentGameState;
 
     private GameObject currentLevel;
     private GameObject levels;
@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     private int currentLevelCount;
     private static GameManager instance;
+
+    private bool setupByMenu = false;
 
     #region gets and sets
     public GameState CurrentGameState
@@ -44,8 +46,8 @@ public class GameManager : MonoBehaviour
         }
     }
     public static GameManager Instance { get { return instance; } }
-    public GameObject Player1GO { get { return player1GO; } set { player1GO = value; } }
-    public GameObject Player2GO { get { return player2GO; } set { player2GO = value; } }
+    public GameObject Player1GO { get { return player1GO; } set { player1GO = value; setupByMenu = true; } }
+    public GameObject Player2GO { get { return player2GO; } set { player2GO = value; setupByMenu = true; } }
     #endregion
 
     void Awake()
@@ -58,9 +60,11 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        currentGameState = GameState.MENU_STATE;
         firstUpdate = true;
         fadeOut = false;
+
+        if (setupByMenu == false && currentGameState == GameState.GAME_STATE)
+            player1GO = GameObject.FindGameObjectWithTag("Player");
     }
 
 
@@ -115,6 +119,7 @@ public class GameManager : MonoBehaviour
     {
         if (firstUpdate == true)
         {
+
             fadeImage = GameObject.Find("FadePanel").GetComponent<Image>();
             levels = GameObject.Find("Levels");
             currentLevel = levels.transform.GetChild(0).gameObject;
