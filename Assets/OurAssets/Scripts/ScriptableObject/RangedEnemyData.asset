@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: RangedEnemyData
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  damageToPlayer: 5
+  damageToPlayer: 15
   attackCD: 1
   attackRange: 10
   ranged: 1

@@ -281,7 +281,7 @@ MonoBehaviour:
   bulletSpeed: 5
   bulletSpawnTransform: {fileID: 4806306242483292}
   rotationSpeed: 5
-  agroRange: 10
+  agroRange: 20
 --- !u!136 &136966019679142018
 CapsuleCollider:
   m_ObjectHideFlags: 1

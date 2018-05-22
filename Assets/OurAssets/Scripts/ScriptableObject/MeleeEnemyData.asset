@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: MeleeEnemyData
   m_EditorClassIdentifier: 
   movementSpeed: 2.5
-  damageToPlayer: 5
+  damageToPlayer: 17
   attackCD: 1
   attackRange: 1.5
   ranged: 0
