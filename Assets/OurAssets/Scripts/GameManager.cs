@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
         fadeOut = true;
         currentLevelCount++;
         fadeImage.color = new Color(0.0f, 0.0f, 0.0f, 0.051f);
+        camScript.Stop();
         Debug.Log("changing scene");
     }
 
@@ -164,6 +165,10 @@ public class GameManager : MonoBehaviour
                 player2GO.transform.position = currentLevel.transform.GetChild(1).position;
             }
         }
+
+        camScript.Move();
+        camScript.SnapToTargetPos();
+
     }
 
     IEnumerator Fade()
@@ -184,7 +189,6 @@ public class GameManager : MonoBehaviour
     {
         player1GO = Instantiate(player1Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
         player2GO = Instantiate(player2Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
-        //camScript.
         ChangeLevel();
     }
 
