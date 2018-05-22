@@ -195,6 +195,7 @@ public class GameManager : MonoBehaviour
     {
         player1GO = Instantiate(player1Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
         player1Controller = player1GO.GetComponent<PlayerController>();
+        camScript.AddObject(player1GO);
         ChangeLevel();
     }
 
@@ -204,6 +205,9 @@ public class GameManager : MonoBehaviour
         player2GO = Instantiate(player2Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
         player1Controller = player1GO.GetComponent<PlayerController>();
         player2Controller = player2GO.GetComponent<PlayerController>();
+        camScript.AddObject(player1GO);
+        camScript.AddObject(player2GO);
+
 
         ChangeLevel();
     }

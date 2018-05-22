@@ -7,12 +7,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: RailingShort
     100002: //RootNode
+    100004: RailingShort_finished
     400000: RailingShort
     400002: //RootNode
+    400004: RailingShort_finished
     2100000: RailingShortMat
+    2100002: RailingShort_finishedMat
     2300000: RailingShort
+    2300002: RailingShort_finished
     3300000: RailingShort
+    3300002: RailingShort_finished
     4300000: RailingShort
+    4300002: RailingShort_finished
   externalObjects: {}
   materials:
     importMaterials: 1

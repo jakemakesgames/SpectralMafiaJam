@@ -7,12 +7,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: Jar
+    100004: Jar_finished
     400000: //RootNode
     400002: Jar
+    400004: Jar_finished
     2100000: JarMat
+    2100002: Jar_finishedMat
     2300000: Jar
+    2300002: Jar_finished
     3300000: Jar
+    3300002: Jar_finished
     4300000: Jar
+    4300002: Jar_finished
   externalObjects: {}
   materials:
     importMaterials: 1

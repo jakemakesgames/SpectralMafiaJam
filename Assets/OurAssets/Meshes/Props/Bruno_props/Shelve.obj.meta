@@ -7,12 +7,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: Shelves
+    100004: Shelves_finished
     400000: //RootNode
     400002: Shelves
+    400004: Shelves_finished
     2100000: ShelvesMat
+    2100002: Shelves_finishedMat
     2300000: Shelves
+    2300002: Shelves_finished
     3300000: Shelves
+    3300002: Shelves_finished
     4300000: Shelves
+    4300002: Shelves_finished
   externalObjects: {}
   materials:
     importMaterials: 1

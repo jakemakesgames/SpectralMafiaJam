@@ -7,12 +7,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: Stairs
     100002: //RootNode
+    100004: Stairs_finished
     400000: Stairs
     400002: //RootNode
+    400004: Stairs_finished
     2100000: StairsMat
+    2100002: Stairs_finishedMat
     2300000: Stairs
+    2300002: Stairs_finished
     3300000: Stairs
+    3300002: Stairs_finished
     4300000: Stairs
+    4300002: Stairs_finished
   externalObjects: {}
   materials:
     importMaterials: 1
