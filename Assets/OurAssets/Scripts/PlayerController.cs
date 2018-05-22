@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
         UpdateLineRenderer();
 
-        canShoot = Physics.CheckSphere(bulletSpawnTransform.position, 0.5f, LayerMask.GetMask("Collider")) == false;
+        canShoot = Physics.CheckSphere(bulletSpawnTransform.position - bulletSpawnTransform.forward * 0.5f, 0.5f, LayerMask.GetMask("Collider")) == false;
         
         if (canShoot && shootTimer <= 0 && XCI.GetButtonDown(shootButton, controllerNumber))
             Shoot();
