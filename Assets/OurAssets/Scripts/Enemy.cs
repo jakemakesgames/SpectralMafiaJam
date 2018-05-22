@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     private GameObject player1GO;
     private GameObject player2GO;
     private PlayerController player1;
+    private PlayerController player2;
     private float attackTimer;
 
 
@@ -27,6 +28,8 @@ public class Enemy : MonoBehaviour
         player2GO = GameManager.Instance.Player2GO;
         attackTimer = enemyScritableObject.AttackCD;
         player1 = player1GO.GetComponent<PlayerController>();
+        if(player2GO != null)
+          player2 = player2GO.GetComponent<PlayerController>();
     }
 
 

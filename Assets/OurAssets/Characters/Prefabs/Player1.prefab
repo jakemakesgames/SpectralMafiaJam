@@ -250,7 +250,7 @@ Transform:
   - {fileID: 4625926234930824}
   m_Father: {fileID: 4499556361601646}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.3321916, y: -70.39573, z: 179.88167}
 --- !u!4 &4069120245924242
 Transform:
   m_ObjectHideFlags: 1
@@ -277,7 +277,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4499556361601646}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 89.3469}
 --- !u!4 &4157054939803614
 Transform:
   m_ObjectHideFlags: 1
@@ -305,7 +305,7 @@ Transform:
   - {fileID: 4024767841603336}
   m_Father: {fileID: 4680385377715852}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.65308356}
 --- !u!4 &4547140890372872
 Transform:
   m_ObjectHideFlags: 1
@@ -344,7 +344,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4024767841603336}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.000002164725, y: -70.396065, z: -90.30046}
 --- !u!4 &4670308326239268
 Transform:
   m_ObjectHideFlags: 1
@@ -374,7 +374,7 @@ Transform:
   - {fileID: 4499556361601646}
   m_Father: {fileID: 4069120245924242}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!4 &4715819367535638
 Transform:
   m_ObjectHideFlags: 1
@@ -394,8 +394,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1906738927127704}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -16.39, y: 0.9481602, z: -7.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4069120245924242}
@@ -443,8 +443,8 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 91087ad13bf8474489fddfc4cb73ca43, type: 3}
   m_Controller: {fileID: 9100000, guid: 135eca40de1a1bb46be5b8349a568ae8, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1

@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
         if (health < 0)
         {
             // Do die animation
-
+            animator.SetTrigger("Die");
             isAlive = false;
         }
     }
