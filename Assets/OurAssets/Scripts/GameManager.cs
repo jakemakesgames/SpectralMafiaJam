@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         currentGameState = GameState.MENU_STATE;
-        playerGO = GameObject.FindGameObjectWithTag("Player");
         firstUpdate = true;
         fadeOut = false;
     }
@@ -134,6 +133,7 @@ public class GameManager : MonoBehaviour
     {
         currentLevel.SetActive(false);
         currentLevel = levels.transform.GetChild(currentLevelCount).gameObject;
+        currentLevel.SetActive(true);
     }
 
 }
