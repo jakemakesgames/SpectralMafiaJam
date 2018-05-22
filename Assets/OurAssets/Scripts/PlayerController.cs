@@ -222,4 +222,12 @@ public class PlayerController : MonoBehaviour
         //}
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.tag == "Jar")
+        {
+            hit.rigidbody.AddForce((hit.rigidbody.transform.position - transform.position).normalized * 1, ForceMode.Impulse);
+        }
+    }
+
 }

@@ -96,8 +96,7 @@ public class Enemy : MonoBehaviour
                     }
                 }
             }
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vecBetween.normalized), rotationSpeed * Time.deltaTime);
         }
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vecBetween.normalized), rotationSpeed * Time.deltaTime);
     }
 }

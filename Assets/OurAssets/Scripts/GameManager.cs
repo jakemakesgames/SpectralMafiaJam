@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
         currentLevelCount++;
         //  fadeImage.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
         camScript.Stop();
-        Debug.Log("changing scene");
+        //Debug.Log("changing scene");
     }
 
 
