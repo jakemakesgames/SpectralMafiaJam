@@ -10,6 +10,28 @@ public class FollowObjects : MonoBehaviour
 
     Vector3 offset;
 
+    bool moving = true;
+
+    public void Move()
+    {
+        moving = true;
+    }
+
+    public void Stop()
+    {
+        moving = false;
+    }
+
+    public void SnapToTargetPos()
+    {
+        transform.position = GetAvgPos() + offset;
+    }
+
+    public void AddObject(GameObject go)
+    {
+        objects.Add(go);
+    }
+
     private void Awake()
     {
         offset = transform.position - GetAvgPos();
@@ -17,8 +39,11 @@ public class FollowObjects : MonoBehaviour
 
     void LateUpdate()
     {
-        Vector3 targetpos = GetAvgPos() + offset;
-        transform.position += (targetpos - transform.position) * Time.deltaTime * speed;
+        if (moving)
+        {
+            Vector3 targetpos = GetAvgPos() + offset;
+            transform.position += (targetpos - transform.position) * Time.deltaTime * speed;
+        }
     }
 
     private Vector3 GetAvgPos()
