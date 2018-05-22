@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - EnemyBullet
   - Wall
+  - Melee Spawn
+  - Ranged Spawn
   layers:
   - Default
   - TransparentFX
