@@ -6,28 +6,32 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private GameObject playerGO;
-    public GameObject PlayerGO { get { return playerGO; } }
-
-    public int playerCount = 1;
-
-    private Image fadeImage;
     public enum GameState
     {
         MENU_STATE,
         GAME_STATE,
         GAMEOVER_STATE
     };
+
+    [Tooltip("The area for player one and player two to reach for the end of the level")]
+    [SerializeField] float loadLevelSpeed;
+
+    private GameObject player1GO;
+    private GameObject player2GO;
+
+    private Image fadeImage;
     private GameState currentGameState;
 
-    private bool changeCamColour;
+    private GameObject currentLevel;
+    private GameObject levels;
+    private bool fadeOut;
     private bool firstUpdate;
 
-    private int level;
+    private int currentLevelCount;
     private static GameManager instance;
-    public static GameManager Instance { get { return instance; } }
 
-    private GameState CurrentGameState
+    #region gets and sets
+    public GameState CurrentGameState
     {
         get
         {
@@ -39,6 +43,10 @@ public class GameManager : MonoBehaviour
             currentGameState = value;
         }
     }
+    public static GameManager Instance { get { return instance; } }
+    public GameObject Player1GO { get { return player1GO; } set { player1GO = value; } }
+    public GameObject Player2GO { get { return player2GO; } set { player2GO = value; } }
+    #endregion
 
     void Awake()
     {
@@ -53,21 +61,30 @@ public class GameManager : MonoBehaviour
         currentGameState = GameState.MENU_STATE;
         playerGO = GameObject.FindGameObjectWithTag("Player");
         firstUpdate = true;
-        changeCamColour = false;
+        fadeOut = false;
     }
 
 
-    private void ChangeLevel()
+    public void ChangeLevel()
     {
-        changeCamColour = true;
+        fadeOut = true;
+        currentLevelCount++;
     }
 
 
     void Update()
     {
-        if(changeCamColour)
+        if(fadeOut)
         {
-            //fadeImage.color.a = 
+            fadeImage.color = new Color(0.0f, 0.0f, 0.0f, Mathf.Lerp(0.0f, 1.0f, Mathf.PingPong(loadLevelSpeed * Time.deltaTime, 1.0f)));
+            if(fadeImage.color.a == 0.0f)
+            {
+                fadeOut = false;
+            }
+            else if(fadeImage.color.a == 1.0f)
+            {
+                ChangeLevel();
+            }
         }
 
         switch (currentGameState)
@@ -91,7 +108,6 @@ public class GameManager : MonoBehaviour
     {
         if (firstUpdate == true)
         {
-            fadeImage = GameObject.Find("FadePanel").GetComponent<Image>();
             firstUpdate = false;
         }
     }
@@ -99,7 +115,10 @@ public class GameManager : MonoBehaviour
     private void UpdateGameState()
     {
         if (firstUpdate == true)
+        {
+            fadeImage = GameObject.Find("FadePanel").GetComponent<Image>();
             firstUpdate = false;
+        }
     }
 
     private void UpdateGameOverState()
@@ -108,5 +127,11 @@ public class GameManager : MonoBehaviour
             firstUpdate = false;
     }
 
+
+    private void LoadLevel()
+    {
+        currentLevel.SetActive(false);
+        currentLevel = levels.transform.GetChild(currentLevelCount).gameObject;
+    }
 
 }
