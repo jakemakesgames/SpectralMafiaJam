@@ -6,7 +6,12 @@ public class Bullet : MonoBehaviour
 {
 
     [SerializeField] GameObject emptyJarPrefab;
+    [SerializeField] GameObject enemyJarPrefab;
     [SerializeField] GameObject destroyParticlesPrefab = null;
+
+    bool isAlive = true;
+
+    public bool IsAlive { get { return isAlive; } set { isAlive = value; } }
 
     private void Awake()
     {
@@ -15,7 +20,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Wall" || other.tag == "Enemy")
+        if (IsAlive && (other.tag == "Wall" || other.tag == "Enemy"))
         {
             if (other.tag == "Wall")
             {
@@ -23,11 +28,19 @@ public class Bullet : MonoBehaviour
                 Instantiate(emptyJarPrefab, transform.position + gameObject.GetComponent<Rigidbody>().velocity.normalized * -0.5f, emptyJarPrefab.transform.rotation);
             }
 
+            if (other.tag == "Enemy")
+            {
+                other.gameObject.SetActive(false);
+                GameObject newJar = Instantiate(enemyJarPrefab, transform.position, enemyJarPrefab.transform.rotation);
+                newJar.GetComponent<EnemyJar>().Startup(gameObject);
+            }
+
             // Do some particles
             if (destroyParticlesPrefab != null)
                 Instantiate(destroyParticlesPrefab, transform.position, destroyParticlesPrefab.transform.rotation);
             // Destroy this bullet
             Destroy(gameObject);
+            IsAlive = false;
         }
     }
 

@@ -7,6 +7,10 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] int damage = 10;
     [SerializeField] GameObject destroyParticlesPrefab = null;
 
+    bool isAlive = true;
+
+    public bool IsAlive { get { return isAlive; } set { isAlive = value; } }
+
     public int Damage { get { return damage; } set { damage = value; } }
 
     private void Awake()
@@ -16,7 +20,7 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Wall" || other.tag == "Player")
+        if (isAlive && (other.tag == "Wall" || other.tag == "Player"))
         {
             if (other.tag == "Player")
             {
@@ -28,6 +32,7 @@ public class EnemyBullet : MonoBehaviour
                 Instantiate(destroyParticlesPrefab, transform.position, destroyParticlesPrefab.transform.rotation);
             // Destroy this bullet
             Destroy(gameObject);
+            isAlive = false;
         }
     }
 }
