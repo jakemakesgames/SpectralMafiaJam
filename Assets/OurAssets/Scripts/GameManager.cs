@@ -117,6 +117,8 @@ public class GameManager : MonoBehaviour
         if (firstUpdate == true)
         {
             fadeImage = GameObject.Find("FadePanel").GetComponent<Image>();
+            levels = GameObject.Find("Levels");
+            currentLevel = levels.transform.GetChild(0).gameObject;
             firstUpdate = false;
         }
     }
