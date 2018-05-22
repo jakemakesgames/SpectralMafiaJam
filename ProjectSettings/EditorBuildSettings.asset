@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/OurAssets/Scenes/jordan_scene.unity
+    guid: 3c5bab0c96289334393f34307b4f5dcc

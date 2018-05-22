@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 54272586688167386}
   - component: {fileID: 114908213693370552}
   m_Layer: 0
-  m_Name: Bullet 1
+  m_Name: Player1Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: cd20a6b64e4a97d4d932c42328eaf4e9, type: 2}
+  - {fileID: 2100000, guid: 6b45ca6fa8e4e644caf0797770b47350, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -140,9 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a3088a509ca4da4cbd9010d12b5cb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyJarPrefab: {fileID: 1354933525897584, guid: 9049e2b6cb36d8c4d9c2ff3257963012,
+  emptyJarPrefab: {fileID: 1354933525897584, guid: d11580130f76c5840807f271acb02628,
     type: 2}
-  enemyJarPrefab: {fileID: 1351882922817428, guid: eb5c21a6e988f524eaee9ba6ca70e18d,
+  enemyJarPrefab: {fileID: 1351882922817428, guid: b20fb0e2d8eab9743ae4aa4ab827ba87,
     type: 2}
   destroyParticlesPrefab: {fileID: 0}
 --- !u!135 &135182107234508798

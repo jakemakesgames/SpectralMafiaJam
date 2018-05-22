@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65592732759340048}
   - component: {fileID: 65688934137134186}
   m_Layer: 0
-  m_Name: JamJarFull
+  m_Name: Player1JarFull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,7 +119,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: cd20a6b64e4a97d4d932c42328eaf4e9, type: 2}
+  - {fileID: 2100000, guid: 6b45ca6fa8e4e644caf0797770b47350, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -462,7 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllerNumber: 1
   shootButton: 9
-  bulletPrefab: {fileID: 1655437767094304, guid: f4195a4f439827842869c2bc5d53dc4e,
+  bulletPrefab: {fileID: 1655437767094304, guid: 8d4f727adb7736b48a691ed6a4e649a5,
     type: 2}
   bulletSpawnTransform: {fileID: 4715819367535638}
   shootParticle: {fileID: 198343131947261842}
