@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
         UpdateLineRenderer();
 
-        if (XCI.GetButton(pauseButton, controllerNumber))
+        if (XCI.GetButtonDown(pauseButton, controllerNumber))
         {
             GameManager.Instance.Pause();
         }

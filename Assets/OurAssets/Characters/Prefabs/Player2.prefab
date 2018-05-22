@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 223933071339482710}
   - component: {fileID: 114823864717851288}
   - component: {fileID: 114740169144382160}
-  - component: {fileID: 114043316924942864}
+  - component: {fileID: 114033561571042480}
   m_Layer: 0
   m_Name: Player Canvas
   m_TagString: Untagged
@@ -779,7 +779,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114043316924942864
+--- !u!114 &114033561571042480
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -787,7 +787,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1573270920077938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be1528761baeab94dbbf3d1be1f07b12, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e1b30a28b39aa9439c392bed1c14bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114109028748433986
@@ -942,6 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllerNumber: 2
   shootButton: 9
+  pauseButton: 4
   bulletPrefab: {fileID: 1655437767094304, guid: f4195a4f439827842869c2bc5d53dc4e,
     type: 2}
   bulletSpawnTransform: {fileID: 4136855272860154}
