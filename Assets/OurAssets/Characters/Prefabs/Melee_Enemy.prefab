@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4800914042333524}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,8 +34,23 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4625781240071570}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1310151771989966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4658689016088156}
+  m_Layer: 0
+  m_Name: BulletSpawnTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +64,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4633820056659096}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Melee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +80,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4796486909519414}
   - component: {fileID: 137349857573784550}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Melee1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +95,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4833943422644082}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +113,7 @@ GameObject:
   - component: {fileID: 95867662285708506}
   - component: {fileID: 136722729542849038}
   - component: {fileID: 114389327252593304}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Melee_Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -117,6 +132,7 @@ Transform:
   m_Children:
   - {fileID: 4633820056659096}
   - {fileID: 4796486909519414}
+  - {fileID: 4658689016088156}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -147,6 +163,19 @@ Transform:
   - {fileID: 4625781240071570}
   m_Father: {fileID: 4146140227737170}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4658689016088156
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1310151771989966}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4146140227737170}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4796486909519414
 Transform:
@@ -218,12 +247,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyScritableObject: {fileID: 11400000, guid: d222375354f52a0459d3675f5bb7d89b,
     type: 2}
-  enemyJarPrefab: {fileID: 1440239483500832, guid: e056f769a08b096479e09cc52426ec10,
-    type: 2}
-  bulletPrefab: {fileID: 1655437767094304, guid: f4195a4f439827842869c2bc5d53dc4e,
-    type: 2}
+  enemyBulletPrefab: {fileID: 0}
   bulletSpeed: 5
+  bulletSpawnTransform: {fileID: 4658689016088156}
   rotationSpeed: 5
+  agroRange: 10
 --- !u!136 &136722729542849038
 CapsuleCollider:
   m_ObjectHideFlags: 1

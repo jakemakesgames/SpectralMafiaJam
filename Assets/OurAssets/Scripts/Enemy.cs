@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] GameObject enemyBulletPrefab;
     [SerializeField] float bulletSpeed;
+    [SerializeField] Transform bulletSpawnTransform;
 
     [SerializeField] float rotationSpeed;
 
@@ -37,7 +38,7 @@ public class Enemy : MonoBehaviour
         if (player2GO != null)
         {
             Vector3 vecBetween2 = player2GO.transform.position - transform.position;
-            vecBetween = vecBetween2.magnitude < vecBetween2.magnitude ? vecBetween1 : vecBetween2;
+            vecBetween = vecBetween1.magnitude < vecBetween2.magnitude ? vecBetween1 : vecBetween2;
         }
         else
         {
@@ -66,10 +67,10 @@ public class Enemy : MonoBehaviour
                     }
                     else // Shoot
                     {
-                        GameObject bullet = Instantiate(enemyBulletPrefab, transform.position + (vecBetween.normalized * 2), transform.rotation);
-                        bullet.GetComponent<EnemyBullet>().Damage = enemyScritableObject.DamageToPlayer;
-                        bullet.GetComponent<Rigidbody>().AddForce(vecBetween.normalized * bulletSpeed, ForceMode.VelocityChange);
-
+                        // Create a bullet
+                        GameObject newBullet = Instantiate(enemyBulletPrefab, bulletSpawnTransform.position, transform.rotation);
+                        newBullet.GetComponent<EnemyBullet>().Damage = enemyScritableObject.DamageToPlayer;
+                        newBullet.GetComponent<Rigidbody>().AddForce(vecBetween.normalized * bulletSpeed, ForceMode.VelocityChange);
                     }
                 }
             }
