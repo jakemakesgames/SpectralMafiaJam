@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform bulletSpawnPos;
 
+    [SerializeField] ParticleSystem shootParticle;
+
+    [SerializeField] Animator animator;
+
     [SerializeField] float moveSpeed = 1;
     [SerializeField] float rotateSpeed = 5;
     [SerializeField] float fallSpeed = 1;
@@ -36,6 +40,8 @@ public class PlayerController : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
 
+        animator = GetComponent<Animator>();
+
         jarCount = maxJars;
     }
 
@@ -53,6 +59,11 @@ public class PlayerController : MonoBehaviour
     {
         if (jarCount > 0)
         {
+            // Play the particle
+            //shootParticle.Play();
+            // Tell the animator to play the shoot animation
+            animator.SetTrigger("Shoot");
+
             jarCount--;
             shootTimer = shootCooldown;
             // Create a bullet
