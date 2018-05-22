@@ -1,17 +1,18 @@
 fileFormatVersion: 2
-guid: 6be7d62448621b547b1bb7422caa1353
-timeCreated: 1526879900
+guid: 6c1e01a2a18bb244c826694e3b492e0b
+timeCreated: 1526946868
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: 08 - Default
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Cylinder003
-    9500000: //RootNode
+    100000: RailingMed
+    100002: //RootNode
+    400000: RailingMed
+    400002: //RootNode
+    2100000: RailingMedMat
+    2300000: RailingMed
+    3300000: RailingMed
+    4300000: RailingMed
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -86,7 +87,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
