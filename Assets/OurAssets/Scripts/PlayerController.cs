@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed = 1;
     [SerializeField] float fallSpeed = 1;
     [SerializeField] float bulletSpeed = 1;
+    [SerializeField] float shootCooldown = 0.5f;
 
     [SerializeField] int health = 100;
 
@@ -21,6 +22,8 @@ public class PlayerController : MonoBehaviour
     CharacterController cc;
 
     Vector3 bodyRotation;
+
+    float shootTimer;
 
     public bool IsAlive { get { return isAlive; } }
 
@@ -33,15 +36,15 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
 
-        if (/*throwTimer <= 0 &&*/ XCI.GetButtonDown(shootButton, controllerNumber))
-        {
+        if (shootTimer <= 0 && XCI.GetButtonDown(shootButton, controllerNumber))
             Shoot();
-        }
-
+        else
+            shootTimer -= Time.deltaTime;
     }
 
     void Shoot()
     {
+        shootTimer = shootCooldown;
         // Create a bullet
         GameObject newBullet = Instantiate(bulletPrefab, bulletSpawnPos.position, transform.rotation);
         // Set the velocity
@@ -73,24 +76,18 @@ public class PlayerController : MonoBehaviour
         // Move the player
         cc.Move(leftStickDirection * moveSpeed * Time.deltaTime);
 
-        // Left stick rotation
-        if (leftStickDirection.x != 0 || leftStickDirection.y != 0)
-        {
-            Vector3 targetRotation = leftStickDirection;
-            bodyRotation = Vector3.Lerp(bodyRotation, targetRotation, 10 * Time.deltaTime);
-            transform.LookAt(transform.position + bodyRotation);
-        }
-
         // Right stick
         Vector3 rightStickDirection = Vector3.zero;
         rightStickDirection.x = XCI.GetAxis(XboxAxis.RightStickX, controllerNumber);
         rightStickDirection.z = XCI.GetAxis(XboxAxis.RightStickY, controllerNumber);
 
-        if (rightStickDirection.x != 0 || rightStickDirection.y != 0)
+        Vector3 targetRotation = leftStickDirection;
+        // Prioritize right stick for rotation
+        if (rightStickDirection.x > 0 || rightStickDirection.z > 0)
         {
-            Vector3 targetRotation = rightStickDirection;
-            bodyRotation = Vector3.Lerp(bodyRotation, targetRotation, 10 * Time.deltaTime);
+            targetRotation = rightStickDirection;
         }
+        bodyRotation = Vector3.Lerp(bodyRotation, targetRotation, 2 * Time.deltaTime);
         transform.LookAt(transform.position + bodyRotation);
     }
 
