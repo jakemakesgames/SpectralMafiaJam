@@ -99,12 +99,13 @@ public class GameManager : MonoBehaviour
         if (fadeOut)
         {
             fadeInAndOutTime += fadeInSpeed * Time.deltaTime;
-            fadeImage.color = new Color(0.0f, 0.0f, 0.0f, (float)Mathf.Lerp(0, 1, fadeInAndOutTime));
+            fadeImage.color = new Color(0.0f, 0.0f, 0.0f, Mathf.Lerp(0, 1, fadeInAndOutTime));
 
             if (fadeImage.color.a >= 1f)
             {
                 LoadLevel();
                 StartCoroutine(Fade());
+                fadeOut = false;
             }
         }
         if (fadeIn)
