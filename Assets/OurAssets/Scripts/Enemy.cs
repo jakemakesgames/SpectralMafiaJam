@@ -13,23 +13,35 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] float rotationSpeed;
 
-    private GameObject playerGO;
-    private PlayerController player;
+    private GameObject player1GO;
+    private GameObject player2GO;
+    private PlayerController player1;
     private float attackTimer;
 
 
     void Start()
     {
-        playerGO = GameManager.Instance.PlayerGO;
+        player1GO = GameManager.Instance.Player1GO;
+        player2GO = GameManager.Instance.Player1GO;
         attackTimer = enemyScritableObject.AttackCD;
-        player = playerGO.GetComponent<PlayerController>();
+        player1 = player1GO.GetComponent<PlayerController>();
     }
 
 
     void Update()
     {
         attackTimer += Time.deltaTime;
-        Vector3 vecBetween = playerGO.transform.position - transform.position;
+        Vector3 vecBetween1 = player1GO.transform.position - transform.position;
+        Vector3 vecBetween;
+        if (player2GO != null)
+        {
+            Vector3 vecBetween2 = player2GO.transform.position - transform.position;
+            vecBetween = vecBetween2.magnitude < vecBetween2.magnitude ? vecBetween1 : vecBetween2;
+        }
+        else
+        {
+            vecBetween = vecBetween1;
+        }
 
         if (vecBetween.magnitude > enemyScritableObject.AttackRange)
         {
@@ -42,7 +54,7 @@ public class Enemy : MonoBehaviour
                 attackTimer = 0;
                 if (enemyScritableObject.Ranged == false)
                 {
-                    player.TakeDamage(enemyScritableObject.DamageToPlayer);
+                    player1.TakeDamage(enemyScritableObject.DamageToPlayer);
                 }
                 else
                 {   
@@ -65,7 +77,7 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Bullet")
         {
             gameObject.SetActive(false);
-            GameObject newJar = Instantiate(enemyJarPrefab, transform.position, transform.rotation);
+            GameObject newJar = Instantiate(enemyJarPrefab, transform.position, enemyJarPrefab.transform.rotation);
             newJar.GetComponent<EnemyJar>().Startup(gameObject);
         }
     }
