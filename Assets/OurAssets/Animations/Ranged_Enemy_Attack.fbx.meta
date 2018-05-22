@@ -1,27 +1,29 @@
 fileFormatVersion: 2
-guid: d617f1a0d11d71144abf52945ef43c2e
-timeCreated: 1526885289
+guid: 7a76c7375bf018b4981026b8279fa74d
+timeCreated: 1526950309
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: joint6
-    100002: joint7
-    100004: joint8
-    100006: Melee
-    100008: Melee1 1
-    100010: //RootNode
-    400000: joint6
-    400002: joint7
-    400004: joint8
-    400006: Melee
-    400008: Melee1 1
-    400010: //RootNode
+    100000: joint10
+    100002: joint11
+    100004: joint12
+    100006: joint9
+    100008: Ranged
+    100010: Ranged2
+    100012: //RootNode
+    400000: joint10
+    400002: joint11
+    400004: joint12
+    400006: joint9
+    400008: Ranged
+    400010: Ranged2
+    400012: //RootNode
     2100000: lambert2
-    4300000: Melee1
-    7400000: Idle
+    4300000: Ranged2
+    7400000: Attack
     9500000: //RootNode
-    13700000: Melee1 1
+    13700000: Ranged2
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -48,7 +50,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Attack
+      takeName: Attack
+      firstFrame: 5
+      lastFrame: 9
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

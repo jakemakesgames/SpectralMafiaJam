@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: dbb0851e63fc2b4499ffe3fb49b21e13
-timeCreated: 1526885042
+guid: e4b38a7f4d617c44aae7d2ebf4d85b43
+timeCreated: 1526949990
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -19,6 +19,7 @@ ModelImporter:
     400010: //RootNode
     2100000: lambert2
     4300000: Melee1
+    7400000: Take 001
     9500000: //RootNode
     13700000: Melee1 1
   externalObjects: {}
