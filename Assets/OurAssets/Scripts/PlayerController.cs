@@ -51,12 +51,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (isAlive == false)
+            return;
+
         Movement();
 
         UpdateLineRenderer();
 
         canShoot = Physics.CheckSphere(bulletSpawnTransform.position - bulletSpawnTransform.forward * 0.5f, 0.5f, LayerMask.GetMask("Collider")) == false;
-        
+
         if (canShoot && shootTimer <= 0 && XCI.GetButtonDown(shootButton, controllerNumber))
             Shoot();
         else
@@ -147,7 +150,11 @@ public class PlayerController : MonoBehaviour
         health -= dmg;
 
         if (health < 0)
+        {
+            // Do die animation
+
             isAlive = false;
+        }
     }
 
     public bool PickUpJar(bool empty)
