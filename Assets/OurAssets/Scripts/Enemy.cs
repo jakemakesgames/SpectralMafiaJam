@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] EnemyData enemyScritableObject;   
 
     [SerializeField] GameObject enemyJarPrefab;
-    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] GameObject enemyBulletPrefab;
     [SerializeField] float bulletSpeed;
 
     [SerializeField] float rotationSpeed;
@@ -61,7 +61,8 @@ public class Enemy : MonoBehaviour
 
                     //shoot
                     
-                    GameObject bullet = Instantiate(bulletPrefab, transform.position + (vecBetween.normalized * 2), transform.rotation);
+                    GameObject bullet = Instantiate(enemyBulletPrefab, transform.position + (vecBetween.normalized * 2), transform.rotation);
+                    bullet.GetComponent<EnemyBullet>().Damage = enemyScritableObject.DamageToPlayer;
                     bullet.GetComponent<Rigidbody>().AddForce(vecBetween.normalized * bulletSpeed, ForceMode.VelocityChange);
                     
                 }

@@ -11,22 +11,48 @@ public class EnemyJar : MonoBehaviour
 
     float timer = 1000;
 
-	public void Startup(GameObject enemy)
+    public void Startup(GameObject enemy)
     {
         containedEnemy = enemy;
         timer = trappedTime;
-	}
-	
-	void Update()
+    }
+
+    public void PickedUp()
     {
-        if (timer < 0)
+        // Destroy the enemy contained
+        if (containedEnemy != null)
         {
-            // Respawn the enemy
-            containedEnemy.SetActive(true);
-            // Destroy this jar
-            Destroy(gameObject);
+            Destroy(containedEnemy);
         }
-        else
-            timer -= Time.deltaTime;
-	}
+        // Destroy this jar
+        Destroy(gameObject);
+    }
+
+    void Update()
+    {
+        if (containedEnemy != null)
+        {
+            if (timer < 0)
+            {
+                // Respawn the enemy
+                containedEnemy.SetActive(true);
+                // Destroy this jar
+                Destroy(gameObject);
+            }
+            else
+                timer -= Time.deltaTime;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            // Returns true if the player picked up the jar
+            if (other.GetComponent<PlayerController>().PickUpJar(containedEnemy == null))
+            {
+                PickedUp();
+            }
+        }
+    }
 }

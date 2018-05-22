@@ -11,9 +11,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform bulletSpawnPos;
 
     [SerializeField] float moveSpeed = 1;
+    [SerializeField] float rotateSpeed = 5;
     [SerializeField] float fallSpeed = 1;
     [SerializeField] float bulletSpeed = 1;
     [SerializeField] float shootCooldown = 0.5f;
+
+    [SerializeField] int maxJars = 3;
 
     [SerializeField] int health = 100;
 
@@ -25,11 +28,15 @@ public class PlayerController : MonoBehaviour
 
     float shootTimer;
 
+    int jarCount;
+
     public bool IsAlive { get { return isAlive; } }
 
     private void Awake()
     {
         cc = GetComponent<CharacterController>();
+
+        jarCount = maxJars;
     }
 
     private void Update()
@@ -44,11 +51,15 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
-        shootTimer = shootCooldown;
-        // Create a bullet
-        GameObject newBullet = Instantiate(bulletPrefab, bulletSpawnPos.position, transform.rotation);
-        // Set the velocity
-        newBullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
+        if (jarCount > 0)
+        {
+            jarCount--;
+            shootTimer = shootCooldown;
+            // Create a bullet
+            GameObject newBullet = Instantiate(bulletPrefab, bulletSpawnPos.position, transform.rotation);
+            // Set the velocity
+            newBullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
+        }
     }
 
 
@@ -83,11 +94,11 @@ public class PlayerController : MonoBehaviour
 
         Vector3 targetRotation = leftStickDirection;
         // Prioritize right stick for rotation
-        if (rightStickDirection.x > 0 || rightStickDirection.z > 0)
+        if (rightStickDirection.x != 0 || rightStickDirection.z != 0)
         {
             targetRotation = rightStickDirection;
         }
-        bodyRotation = Vector3.Lerp(bodyRotation, targetRotation, 2 * Time.deltaTime);
+        bodyRotation = Vector3.Lerp(bodyRotation, targetRotation, rotateSpeed * Time.deltaTime);
         transform.LookAt(transform.position + bodyRotation);
     }
 
@@ -97,6 +108,23 @@ public class PlayerController : MonoBehaviour
 
         if (health < 0)
             isAlive = false;
+    }
+
+    public bool PickUpJar(bool empty)
+    {
+        if (jarCount < maxJars)
+        {
+            jarCount++;
+            if (empty == false)
+            {
+                // Kill count ++
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }
