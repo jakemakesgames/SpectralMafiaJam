@@ -113,6 +113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emptyJarPrefab: {fileID: 1141746155557092, guid: a762e70a2ade87d4f959d25385317a5d,
     type: 2}
+  enemyJarPrefab: {fileID: 1440239483500832, guid: e056f769a08b096479e09cc52426ec10,
+    type: 2}
   destroyParticlesPrefab: {fileID: 0}
 --- !u!135 &135182107234508798
 SphereCollider:

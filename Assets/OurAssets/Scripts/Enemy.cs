@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] EnemyData enemyScritableObject;   
+    [SerializeField] EnemyData enemyScritableObject;
 
-    [SerializeField] GameObject enemyJarPrefab;
     [SerializeField] GameObject enemyBulletPrefab;
     [SerializeField] float bulletSpeed;
 
     [SerializeField] float rotationSpeed;
+
+    [SerializeField] float agroRange = 10;
 
     private GameObject player1GO;
     private GameObject player2GO;
@@ -43,28 +44,33 @@ public class Enemy : MonoBehaviour
             vecBetween = vecBetween1;
         }
 
-        if (vecBetween.magnitude > enemyScritableObject.AttackRange)
+        // MAke sure we're within the agro range
+        if (vecBetween.magnitude < agroRange)
         {
-            transform.position += vecBetween.normalized * enemyScritableObject.MovementSpeed * Time.deltaTime;
-        }
-        else
-        {
-            if (attackTimer > enemyScritableObject.AttackCD)
+            // Check if this enemy is out of the attack range
+            if (vecBetween.magnitude > enemyScritableObject.AttackRange)
             {
-                attackTimer = 0;
-                if (enemyScritableObject.Ranged == false)
+                // Move to player
+                transform.position += vecBetween.normalized * enemyScritableObject.MovementSpeed * Time.deltaTime;
+            }
+            else // Attack
+            {
+                // Check for the attack cooldown
+                if (attackTimer > enemyScritableObject.AttackCD)
                 {
-                    player1.TakeDamage(enemyScritableObject.DamageToPlayer);
-                }
-                else
-                {   
+                    attackTimer = 0;
+                    // If we are melee
+                    if (enemyScritableObject.Ranged == false)
+                    {
+                        player1.TakeDamage(enemyScritableObject.DamageToPlayer);
+                    }
+                    else // Shoot
+                    {
+                        GameObject bullet = Instantiate(enemyBulletPrefab, transform.position + (vecBetween.normalized * 2), transform.rotation);
+                        bullet.GetComponent<EnemyBullet>().Damage = enemyScritableObject.DamageToPlayer;
+                        bullet.GetComponent<Rigidbody>().AddForce(vecBetween.normalized * bulletSpeed, ForceMode.VelocityChange);
 
-                    //shoot
-                    
-                    GameObject bullet = Instantiate(enemyBulletPrefab, transform.position + (vecBetween.normalized * 2), transform.rotation);
-                    bullet.GetComponent<EnemyBullet>().Damage = enemyScritableObject.DamageToPlayer;
-                    bullet.GetComponent<Rigidbody>().AddForce(vecBetween.normalized * bulletSpeed, ForceMode.VelocityChange);
-                    
+                    }
                 }
             }
         }
@@ -72,15 +78,4 @@ public class Enemy : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vecBetween.normalized), rotationSpeed * Time.deltaTime);
 
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Bullet")
-        {
-            gameObject.SetActive(false);
-            GameObject newJar = Instantiate(enemyJarPrefab, transform.position, enemyJarPrefab.transform.rotation);
-            newJar.GetComponent<EnemyJar>().Startup(gameObject);
-        }
-    }
-
 }
