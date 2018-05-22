@@ -146,6 +146,7 @@ public class GameManager : MonoBehaviour
             case GameState.GAMEOVER_STATE:
                 UpdateGameOverState();
                 break;
+
             default:
                 Assert.IsTrue(true, "GameState is default");
                 break;
@@ -160,7 +161,7 @@ public class GameManager : MonoBehaviour
 
             fadeImage = GameObject.Find("FadePanel").GetComponent<Image>();
             levels = GameObject.FindGameObjectWithTag("Levels");
-            CurrentLevel = levels.transform.GetChild(0).gameObject;
+            currentLevel = levels.transform.GetChild(0).gameObject;
             firstUpdate = false;
         }
 
@@ -208,9 +209,9 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        CurrentLevel.SetActive(false);
-        CurrentLevel = levels.transform.GetChild(currentLevelCount).gameObject;
-        CurrentLevel.SetActive(true);
+        currentLevel.SetActive(false);
+        currentLevel = levels.transform.GetChild(currentLevelCount).gameObject;
+        currentLevel.SetActive(true);
 
         if (player1GO != null)
         {
@@ -259,6 +260,12 @@ public class GameManager : MonoBehaviour
 
         ChangeLevel();
     }
+    
+    public void Pause()
+    {
+
+    }
+
 
     public void Exit()
     {
