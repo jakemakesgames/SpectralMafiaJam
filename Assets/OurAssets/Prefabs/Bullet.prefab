@@ -111,6 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a3088a509ca4da4cbd9010d12b5cb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptyJarPrefab: {fileID: 1141746155557092, guid: a762e70a2ade87d4f959d25385317a5d,
+    type: 2}
   destroyParticlesPrefab: {fileID: 0}
 --- !u!135 &135182107234508798
 SphereCollider:

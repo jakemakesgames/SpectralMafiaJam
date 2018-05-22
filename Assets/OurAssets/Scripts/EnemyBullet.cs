@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
-
-    [SerializeField] GameObject emptyJarPrefab;
+    [SerializeField] int damage = 10;
     [SerializeField] GameObject destroyParticlesPrefab = null;
+
+    public int Damage { get { return damage; } set { damage = value; } }
 
     private void Awake()
     {
@@ -15,12 +16,11 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Wall" || other.tag == "Enemy")
+        if (other.tag == "Wall" || other.tag == "Player")
         {
-            if (other.tag == "Wall")
+            if (other.tag == "Player")
             {
-                // Create a empty jar
-                Instantiate(emptyJarPrefab, transform.position + gameObject.GetComponent<Rigidbody>().velocity.normalized * -0.5f, emptyJarPrefab.transform.rotation);
+                other.GetComponent<PlayerController>().TakeDamage(damage);
             }
 
             // Do some particles
@@ -30,5 +30,4 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }
