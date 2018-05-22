@@ -8,9 +8,9 @@ public class FollowObjects : MonoBehaviour
 
     [SerializeField] float speed = 5;
 
-    Vector3 offset;
+    //Vector3 offset;
 
-    bool moving = true;
+    bool moving = false;
 
     public void Move()
     {
@@ -24,7 +24,7 @@ public class FollowObjects : MonoBehaviour
 
     public void SnapToTargetPos()
     {
-        transform.position = GetAvgPos() + offset;
+        transform.position = GetAvgPos();// + offset;
     }
 
     public void AddObject(GameObject go)
@@ -32,16 +32,11 @@ public class FollowObjects : MonoBehaviour
         objects.Add(go);
     }
 
-    private void Awake()
-    {
-        offset = transform.position - GetAvgPos();
-    }
-
     void LateUpdate()
     {
         if (moving)
         {
-            Vector3 targetpos = GetAvgPos() + offset;
+            Vector3 targetpos = GetAvgPos();// + offset;
             transform.position += (targetpos - transform.position) * Time.deltaTime * speed;
         }
     }
@@ -54,7 +49,7 @@ public class FollowObjects : MonoBehaviour
         {
             avgPosition += objects[i].transform.position;
         }
-        avgPosition = avgPosition / objects.Count;
+        avgPosition = avgPosition / (float)objects.Count;
         return avgPosition;
     }
 }

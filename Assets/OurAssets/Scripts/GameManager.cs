@@ -183,6 +183,7 @@ public class GameManager : MonoBehaviour
     public void Player1Button()
     {
         player1GO = Instantiate(player1Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
+        camScript.AddObject(player1GO);
         ChangeLevel();
     }
 
@@ -190,6 +191,9 @@ public class GameManager : MonoBehaviour
     {
         player1GO = Instantiate(player1Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
         player2GO = Instantiate(player2Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
+        camScript.AddObject(player1GO);
+        camScript.AddObject(player2GO);
+
         ChangeLevel();
     }
 

@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         if (jarCount > 0)
         {
             // Play the particle
-            //shootParticle.Play();
+            shootParticle.Play();
             // Tell the animator to play the shoot animation
             animator.SetTrigger("Shoot");
 
