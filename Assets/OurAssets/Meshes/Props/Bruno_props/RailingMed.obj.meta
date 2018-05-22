@@ -7,12 +7,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: RailingMed
     100002: //RootNode
+    100004: RailingMed_finished
     400000: RailingMed
     400002: //RootNode
+    400004: RailingMed_finished
     2100000: RailingMedMat
+    2100002: RailingMed_finishedMat
     2300000: RailingMed
+    2300002: RailingMed_finished
     3300000: RailingMed
+    3300002: RailingMed_finished
     4300000: RailingMed
+    4300002: RailingMed_finished
   externalObjects: {}
   materials:
     importMaterials: 1

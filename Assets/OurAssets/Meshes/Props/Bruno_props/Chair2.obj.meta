@@ -7,12 +7,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: Chair2
     100002: //RootNode
+    100004: Chair2_finished
     400000: Chair2
     400002: //RootNode
+    400004: Chair2_finished
     2100000: Chair2Mat
+    2100002: Chair2_finishedMat
     2300000: Chair2
+    2300002: Chair2_finished
     3300000: Chair2
+    3300002: Chair2_finished
     4300000: Chair2
+    4300002: Chair2_finished
   externalObjects: {}
   materials:
     importMaterials: 1

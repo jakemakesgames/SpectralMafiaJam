@@ -7,12 +7,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: TableMid
     100002: //RootNode
+    100004: TableMid_finished
     400000: TableMid
     400002: //RootNode
+    400004: TableMid_finished
     2100000: TableMidMat
+    2100002: TableMid_finishedMat
     2300000: TableMid
+    2300002: TableMid_finished
     3300000: TableMid
+    3300002: TableMid_finished
     4300000: TableMid
+    4300002: TableMid_finished
   externalObjects: {}
   materials:
     importMaterials: 1
