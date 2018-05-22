@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
     private GameObject player1GO;
     private GameObject player2GO;
 
+    private PlayerController player1Controller;
+    private PlayerController player2Controller;
+
+
     private Image fadeImage;
     [SerializeField] GameState currentGameState;
 
@@ -143,6 +147,13 @@ public class GameManager : MonoBehaviour
             currentLevel = levels.transform.GetChild(0).gameObject;
             firstUpdate = false;
         }
+
+        if (player1Controller.IsAlive == false && player2Controller.IsAlive == false)
+        {
+            currentLevelCount--;
+            ChangeLevel();
+        }
+
     }
 
     private void UpdateGameOverState()
@@ -183,6 +194,7 @@ public class GameManager : MonoBehaviour
     public void Player1Button()
     {
         player1GO = Instantiate(player1Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
+        player1Controller = player1GO.GetComponent<PlayerController>();
         ChangeLevel();
     }
 
@@ -190,6 +202,9 @@ public class GameManager : MonoBehaviour
     {
         player1GO = Instantiate(player1Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
         player2GO = Instantiate(player2Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
+        player1Controller = player1GO.GetComponent<PlayerController>();
+        player2Controller = player2GO.GetComponent<PlayerController>();
+
         ChangeLevel();
     }
 
