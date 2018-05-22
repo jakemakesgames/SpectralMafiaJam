@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return instance; } }
     public GameObject Player1GO { get { return player1GO; } }
     public GameObject Player2GO { get { return player2GO; } }
+
+    public GameObject CurrentLevel { get { return currentLevel; } }
     #endregion
 
     void Awake()
@@ -158,7 +160,7 @@ public class GameManager : MonoBehaviour
 
             fadeImage = GameObject.Find("FadePanel").GetComponent<Image>();
             levels = GameObject.FindGameObjectWithTag("Levels");
-            currentLevel = levels.transform.GetChild(0).gameObject;
+            CurrentLevel = levels.transform.GetChild(0).gameObject;
             firstUpdate = false;
         }
 
@@ -194,7 +196,7 @@ public class GameManager : MonoBehaviour
     private void LoadLevel()
     {
 
-        if(player1GO.activeInHierarchy == false)
+        if (player1GO.activeInHierarchy == false)
         {
             player1GO.SetActive(true);
         }
@@ -206,16 +208,16 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        currentLevel.SetActive(false);
-        currentLevel = levels.transform.GetChild(currentLevelCount).gameObject;
-        currentLevel.SetActive(true);
+        CurrentLevel.SetActive(false);
+        CurrentLevel = levels.transform.GetChild(currentLevelCount).gameObject;
+        CurrentLevel.SetActive(true);
 
         if (player1GO != null)
         {
-            player1GO.transform.position = currentLevel.transform.GetChild(0).position;
+            player1GO.transform.position = CurrentLevel.transform.GetChild(0).position;
             if (player2GO != null)
             {
-                player2GO.transform.position = currentLevel.transform.GetChild(1).position;
+                player2GO.transform.position = CurrentLevel.transform.GetChild(1).position;
             }
         }
 
