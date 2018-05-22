@@ -247,12 +247,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyScritableObject: {fileID: 11400000, guid: 6e1f184bbe058c24db5efd1484313565,
     type: 2}
-  enemyJarPrefab: {fileID: 1440239483500832, guid: e056f769a08b096479e09cc52426ec10,
-    type: 2}
-  bulletPrefab: {fileID: 1655437767094304, guid: f4195a4f439827842869c2bc5d53dc4e,
+  enemyBulletPrefab: {fileID: 1197762451837890, guid: b79e322a8e2f0fa4f80a3bbeafa3a454,
     type: 2}
   bulletSpeed: 5
   rotationSpeed: 5
+  agroRange: 10
 --- !u!136 &136966019679142018
 CapsuleCollider:
   m_ObjectHideFlags: 1

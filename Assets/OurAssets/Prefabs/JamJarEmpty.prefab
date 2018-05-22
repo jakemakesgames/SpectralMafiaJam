@@ -9,36 +9,37 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1655437767094304}
+  m_RootGameObject: {fileID: 1354933525897584}
   m_IsPrefabParent: 1
---- !u!1 &1655437767094304
+--- !u!1 &1354933525897584
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4595234203638406}
-  - component: {fileID: 135182107234508798}
-  - component: {fileID: 54272586688167386}
-  - component: {fileID: 114908213693370552}
+  - component: {fileID: 4841976375325916}
+  - component: {fileID: 114141618754207868}
+  - component: {fileID: 54617340147488410}
+  - component: {fileID: 65542667804771540}
+  - component: {fileID: 65034610926253466}
   m_Layer: 0
-  m_Name: Bullet
-  m_TagString: Bullet
+  m_Name: JamJarEmpty
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1930849377509068
+--- !u!1 &1740187077693120
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4884146727435368}
-  - component: {fileID: 33607452598336148}
-  - component: {fileID: 23021810101630522}
+  - component: {fileID: 4020088329593948}
+  - component: {fileID: 33161760407436246}
+  - component: {fileID: 23814639890539150}
   m_Layer: 0
   m_Name: Jar
   m_TagString: Untagged
@@ -46,39 +47,39 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4595234203638406
+--- !u!4 &4020088329593948
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1655437767094304}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1740187077693120}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 2.8, y: 2.8, z: 2.8}
+  m_Children: []
+  m_Father: {fileID: 4841976375325916}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4841976375325916
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1354933525897584}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -17.416176, y: 0.052, z: 7.1029215}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4884146727435368}
+  - {fileID: 4020088329593948}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4884146727435368
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1930849377509068}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_Children: []
-  m_Father: {fileID: 4595234203638406}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!23 &23021810101630522
+--- !u!23 &23814639890539150
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1930849377509068}
+  m_GameObject: {fileID: 1740187077693120}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -107,19 +108,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33607452598336148
+--- !u!33 &33161760407436246
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1930849377509068}
+  m_GameObject: {fileID: 1740187077693120}
   m_Mesh: {fileID: 4300002, guid: 66d53b6a30c1f6a46bf57e72bfca92a8, type: 3}
---- !u!54 &54272586688167386
+--- !u!54 &54617340147488410
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1655437767094304}
+  m_GameObject: {fileID: 1354933525897584}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -127,33 +128,41 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114908213693370552
-MonoBehaviour:
+--- !u!65 &65034610926253466
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1655437767094304}
+  m_GameObject: {fileID: 1354933525897584}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a3088a509ca4da4cbd9010d12b5cb50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emptyJarPrefab: {fileID: 1354933525897584, guid: 9049e2b6cb36d8c4d9c2ff3257963012,
-    type: 2}
-  enemyJarPrefab: {fileID: 1351882922817428, guid: eb5c21a6e988f524eaee9ba6ca70e18d,
-    type: 2}
-  destroyParticlesPrefab: {fileID: 0}
---- !u!135 &135182107234508798
-SphereCollider:
+  serializedVersion: 2
+  m_Size: {x: 0.6263485, y: 0.779078, z: 0.4487629}
+  m_Center: {x: -0.007689476, y: -0.1300447, z: 0.020938396}
+--- !u!65 &65542667804771540
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1655437767094304}
+  m_GameObject: {fileID: 1354933525897584}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.0095382, z: 1}
+  m_Center: {x: 0, y: 0.021358252, z: 0}
+--- !u!114 &114141618754207868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1354933525897584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aea414ece6be9d4bb1e58274bae985e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trappedTime: 5
