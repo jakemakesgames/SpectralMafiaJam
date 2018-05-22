@@ -193,6 +193,19 @@ public class GameManager : MonoBehaviour
 
     private void LoadLevel()
     {
+
+        if(player1GO.activeInHierarchy == false)
+        {
+            player1GO.SetActive(true);
+        }
+        if (player2GO != null)
+        {
+            if (player2GO.activeInHierarchy == false)
+            {
+                player2GO.SetActive(true);
+            }
+        }
+
         currentLevel.SetActive(false);
         currentLevel = levels.transform.GetChild(currentLevelCount).gameObject;
         currentLevel.SetActive(true);
@@ -222,6 +235,7 @@ public class GameManager : MonoBehaviour
     public void Player1Button()
     {
         player1GO = Instantiate(player1Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
+        Player1GO.SetActive(false);
         player1Controller = player1GO.GetComponent<PlayerController>();
         camScript.AddObject(player1GO);
         ChangeLevel();
@@ -231,6 +245,10 @@ public class GameManager : MonoBehaviour
     {
         player1GO = Instantiate(player1Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
         player2GO = Instantiate(player2Prefab, new Vector3(-1000, -1000, -1000), Quaternion.identity);
+
+        Player1GO.SetActive(false);
+        player2GO.SetActive(false);
+
         player1Controller = player1GO.GetComponent<PlayerController>();
         player2Controller = player2GO.GetComponent<PlayerController>();
         camScript.AddObject(player1GO);
