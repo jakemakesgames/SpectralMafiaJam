@@ -13,8 +13,9 @@ public class GameManager : MonoBehaviour
         GAMEOVER_STATE
     };
 
-    [Tooltip("The area for player one and player two to reach for the end of the level")]
-    [SerializeField] float loadLevelSpeed;
+    
+    [SerializeField] float fadeInSpeed;
+    [SerializeField] float fadeOutSpeed;
 
     private GameObject player1GO;
     private GameObject player2GO;
@@ -25,12 +26,15 @@ public class GameManager : MonoBehaviour
     private GameObject currentLevel;
     private GameObject levels;
     private bool fadeOut;
+    private bool fadeIn;
+
     private bool firstUpdate;
 
     private int currentLevelCount;
     private static GameManager instance;
 
     private bool setupByMenu = false;
+    private float fadeInAndOutTime;
 
     #region gets and sets
     public GameState CurrentGameState
@@ -65,6 +69,7 @@ public class GameManager : MonoBehaviour
 
         if (setupByMenu == false && currentGameState == GameState.GAME_STATE)
             player1GO = GameObject.FindGameObjectWithTag("Player");
+        fadeInAndOutTime = 0;
     }
 
 
@@ -72,21 +77,32 @@ public class GameManager : MonoBehaviour
     {
         fadeOut = true;
         currentLevelCount++;
+        fadeImage.color = new Color(0.0f, 0.0f, 0.0f, 0.051f);
+        Debug.Log("changing scene");
     }
 
 
     void Update()
     {
-        if(fadeOut)
+
+        if (fadeOut)
         {
-            fadeImage.color = new Color(0.0f, 0.0f, 0.0f, Mathf.Lerp(0.0f, 1.0f, Mathf.PingPong(loadLevelSpeed * Time.deltaTime, 1.0f)));
-            if(fadeImage.color.a == 0.0f)
+            fadeInAndOutTime += fadeInSpeed * Time.deltaTime;
+            fadeImage.color = new Color(0.0f, 0.0f, 0.0f, (float)Mathf.Lerp(0, 1, fadeInAndOutTime));
+
+            if(fadeImage.color.a >= 1f)
             {
-                fadeOut = false;
+                LoadLevel();
+                StartCoroutine(Fade());
             }
-            else if(fadeImage.color.a == 1.0f)
+        }
+        if(fadeIn)
+        {
+            fadeInAndOutTime += fadeOutSpeed * Time.deltaTime;
+            fadeImage.color = new Color(0.0f, 0.0f, 0.0f, Mathf.Lerp(1, 0, fadeInAndOutTime));
+            if(fadeImage.color.a <= 0)
             {
-                ChangeLevel();
+                fadeIn = false;
             }
         }
 
@@ -149,5 +165,15 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    
+    IEnumerator Fade()
+    {
+        yield return new WaitForSeconds(1f);
+        fadeIn = true;
+        fadeOut = false;
+        fadeInAndOutTime = 0;
+    }
+
+
 
 }
