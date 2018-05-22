@@ -89,6 +89,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1360188164215546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4136855272860154}
+  m_Layer: 0
+  m_Name: BulletSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1570857211024788
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,9 +158,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4142072229800450}
   - component: {fileID: 95575132312166756}
+  - component: {fileID: 136022694871824436}
+  - component: {fileID: 143397102753196772}
+  - component: {fileID: 114958006426227498}
   m_Layer: 0
   m_Name: Player2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,6 +182,19 @@ Transform:
   m_Father: {fileID: 4616568031391880}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4136855272860154
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1360188164215546}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.78, y: 0.54, z: 1.49}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4142072229800450}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4142072229800450
 Transform:
   m_ObjectHideFlags: 1
@@ -177,6 +208,7 @@ Transform:
   - {fileID: 4616568031391880}
   - {fileID: 4343269974785122}
   - {fileID: 4368963447245136}
+  - {fileID: 4136855272860154}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -292,6 +324,39 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114958006426227498
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1872050090299968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad4e96a72bf5de47a2b04a9b7869f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerNumber: 2
+  shootButton: 9
+  bulletPrefab: {fileID: 1655437767094304, guid: f4195a4f439827842869c2bc5d53dc4e,
+    type: 2}
+  bulletSpawnPos: {fileID: 4136855272860154}
+  moveSpeed: 5
+  fallSpeed: 1
+  bulletSpeed: 10
+  health: 100
+--- !u!136 &136022694871824436
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1872050090299968}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!137 &137021015273660260
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -347,6 +412,23 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.009310159, y: 0.0033180928, z: 0.0040723295}
     m_Extent: {x: 0.012348347, y: 0.009077437, z: 0.013574438}
   m_DirtyAABB: 0
+--- !u!143 &143397102753196772
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1872050090299968}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!198 &198065233199874036
 ParticleSystem:
   m_ObjectHideFlags: 1
