@@ -55,7 +55,9 @@ public class PlayerController : MonoBehaviour
 
         UpdateLineRenderer();
 
-        if (shootTimer <= 0 && XCI.GetButtonDown(shootButton, controllerNumber))
+        canShoot = Physics.CheckSphere(bulletSpawnTransform.position, 0.5f, LayerMask.GetMask("Collider")) == false;
+        
+        if (canShoot && shootTimer <= 0 && XCI.GetButtonDown(shootButton, controllerNumber))
             Shoot();
         else
             shootTimer -= Time.deltaTime;
@@ -63,14 +65,12 @@ public class PlayerController : MonoBehaviour
 
     void UpdateLineRenderer()
     {
-
         lineRenderer.SetPosition(0, bulletSpawnTransform.position);
         // Ray cast
         Ray ray = new Ray(bulletSpawnTransform.position - bulletSpawnTransform.forward * 1f, bulletSpawnTransform.forward);
         RaycastHit hitInfo = new RaycastHit();
         Debug.Log(LayerMask.GetMask("Collider"));
-        canShoot = Physics.CheckSphere(bulletSpawnTransform.position, 0.5f, LayerMask.GetMask("Collider")) == false && Physics.Raycast(ray, out hitInfo, LayerMask.GetMask("Collider", "Enemy"));
-        if (canShoot)
+        if (canShoot && Physics.Raycast(ray, out hitInfo, 1000, LayerMask.GetMask("Collider", "Enemy")))
         {
             lineRenderer.enabled = true;
             lineRenderer.SetPosition(1, hitInfo.point);
