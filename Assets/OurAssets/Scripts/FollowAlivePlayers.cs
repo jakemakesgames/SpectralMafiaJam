@@ -53,8 +53,10 @@ public class FollowAlivePlayers : MonoBehaviour
         {
             // Only add pos of alive
             if (players[i].GetComponent<PlayerController>().IsAlive)
+            {
                 avgPosition += players[i].transform.position;
-            aliveCount++;
+                aliveCount++;
+            }
         }
         avgPosition = avgPosition / (float)aliveCount;
         return avgPosition;
