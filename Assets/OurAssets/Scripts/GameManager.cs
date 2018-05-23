@@ -224,8 +224,9 @@ public class GameManager : MonoBehaviour
         currentLevel.SetActive(true);
 
 
-        if (currentLevel == levels.transform.GetChild(levels.transform.childCount - 1))
+        if (currentLevelCount == 3)
         {
+            firstUpdate = true;
             currentGameState = GameState.GAMEOVER_STATE;
             return;
         }

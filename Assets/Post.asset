@@ -40,7 +40,7 @@ MonoBehaviour:
         stationaryBlending: 0.95
         motionBlending: 0.85
   ambientOcclusion:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       intensity: 1
       radius: 0.3
@@ -59,15 +59,15 @@ MonoBehaviour:
         iterationCount: 256
         stepSize: 3
         widthModifier: 0.5
-        reflectionBlur: 5.2
-        reflectBackfaces: 0
+        reflectionBlur: 1.19
+        reflectBackfaces: 1
       intensity:
         reflectionMultiplier: 2
         fadeDistance: 0
-        fresnelFade: 0.193
-        fresnelFadePower: 2.32
+        fresnelFade: 0
+        fresnelFadePower: 0.1
       screenEdgeMask:
-        intensity: 0.03
+        intensity: 0.085
   depthOfField:
     m_Enabled: 0
     m_Settings:
@@ -100,7 +100,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.56
+        intensity: 0.45
         threshold: 0.25
         softKnee: 0
         radius: 4.65

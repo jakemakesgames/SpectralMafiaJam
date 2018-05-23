@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 135182107234508798}
   - component: {fileID: 54272586688167386}
   - component: {fileID: 114908213693370552}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player1Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4884146727435368}
   - component: {fileID: 33607452598336148}
   - component: {fileID: 23021810101630522}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Jar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,6 +145,8 @@ MonoBehaviour:
   enemyJarPrefab: {fileID: 1351882922817428, guid: b20fb0e2d8eab9743ae4aa4ab827ba87,
     type: 2}
   destroyParticlesPrefab: {fileID: 0}
+  catchEnemyParticle: {fileID: 1239046550089918, guid: d089d8b36ecdebb40afa06c2732847f0,
+    type: 2}
 --- !u!135 &135182107234508798
 SphereCollider:
   m_ObjectHideFlags: 1

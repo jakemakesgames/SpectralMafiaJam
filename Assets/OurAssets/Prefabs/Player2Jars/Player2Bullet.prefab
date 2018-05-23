@@ -145,6 +145,8 @@ MonoBehaviour:
   enemyJarPrefab: {fileID: 1351882922817428, guid: eb5c21a6e988f524eaee9ba6ca70e18d,
     type: 2}
   destroyParticlesPrefab: {fileID: 0}
+  catchEnemyParticle: {fileID: 1239046550089918, guid: d089d8b36ecdebb40afa06c2732847f0,
+    type: 2}
 --- !u!135 &135182107234508798
 SphereCollider:
   m_ObjectHideFlags: 1
