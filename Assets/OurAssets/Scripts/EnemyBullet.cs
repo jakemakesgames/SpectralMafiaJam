@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
+
+
     [SerializeField] int damage = 10;
     [SerializeField] GameObject destroyParticlesPrefab = null;
 
@@ -15,6 +17,7 @@ public class EnemyBullet : MonoBehaviour
 
     private void Awake()
     {
+        GameManager.Instance.PlayAudio("Shoot");
         Destroy(gameObject, 20);
     }
 

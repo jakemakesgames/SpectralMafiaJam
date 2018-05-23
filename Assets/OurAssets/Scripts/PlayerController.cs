@@ -99,7 +99,6 @@ public class PlayerController : MonoBehaviour
         if (canShoot && shootTimer <= 0 && (XCI.GetButtonDown(shootButton, controllerNumber) || XCI.GetAxis(XboxAxis.RightTrigger, controllerNumber) > 0))
         {
             Shoot();
-            GameManager.Instance.PlayAudio("Shoot");
         }
         else
             shootTimer -= Time.deltaTime;

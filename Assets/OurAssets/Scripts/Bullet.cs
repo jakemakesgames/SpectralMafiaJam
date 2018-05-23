@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour
 
     private void Awake()
     {
+        GameManager.Instance.PlayAudio("Shoot");
         Destroy(gameObject, 20);
     }
 
