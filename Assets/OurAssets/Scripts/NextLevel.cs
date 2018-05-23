@@ -35,7 +35,8 @@ public class NextLevel : MonoBehaviour
         }
         // P1 not alive or not in
         // P2 alive and in
-        else if (gm.Player2GO.GetComponent<PlayerController>().IsAlive && player2In == true)
+
+        else if (gm.Player2GO != null && gm.Player2GO.GetComponent<PlayerController>().IsAlive && player2In == true)
         {
             // P1 dead
             if (gm.Player1GO.GetComponent<PlayerController>().IsAlive == false)
