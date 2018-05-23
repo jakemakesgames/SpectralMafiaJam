@@ -226,6 +226,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trappedTime: 5
+  showFullWait: 0.8
+  escapePatriclePrefab: {fileID: 1638325529270902, guid: 68e8d5a29cb3e2e47b399cdcb4ed20a7,
+    type: 2}
 --- !u!135 &135700492127749998
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -236,5 +239,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.3
   m_Center: {x: 0, y: 0, z: 0}

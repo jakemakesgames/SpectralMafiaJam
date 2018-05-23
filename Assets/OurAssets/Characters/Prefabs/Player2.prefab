@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4907484398667042}
   - component: {fileID: 33206019143125562}
   - component: {fileID: 23017681159601328}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Jar 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4579166026602438}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: joint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 224825747408549844}
   - component: {fileID: 222668585109111840}
   - component: {fileID: 114868947013681826}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4465694277162954}
   - component: {fileID: 198372380464167928}
   - component: {fileID: 199612272026880336}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4603835533718408}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: joint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 33481695869131782}
   - component: {fileID: 64799563298097440}
   - component: {fileID: 23334373782389886}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PlayerCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 224234252753358442}
   - component: {fileID: 222641626779847798}
   - component: {fileID: 114363301930461572}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 4368963447245136}
   - component: {fileID: 198065233199874036}
   - component: {fileID: 199325728759989454}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: WalkParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 4618967145684818}
   - component: {fileID: 33743807121027574}
   - component: {fileID: 23727197020732308}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Jar 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224469434337866620}
   - component: {fileID: 114109028748433986}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4343269974785122}
   - component: {fileID: 137021015273660260}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4894817381776972}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: joint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4136855272860154}
   - component: {fileID: 120224176072390246}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BulletSpawnTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 4355605513511808}
   - component: {fileID: 198364770956962032}
   - component: {fileID: 199565594168729544}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 4276388968755864}
   - component: {fileID: 33912839861529024}
   - component: {fileID: 23956363248136720}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Jar 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4285175805400402}
   - component: {fileID: 108717186574594624}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4616568031391880}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 114823864717851288}
   - component: {fileID: 114740169144382160}
   - component: {fileID: 114033561571042480}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4039829040909568}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BackPack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,7 +332,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4362496032091024}
   - component: {fileID: 108526694053334140}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4772133743338870}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: joint4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4052101429191026}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: joint5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 4728248347044788}
   - component: {fileID: 198313219035255186}
   - component: {fileID: 199623471356938798}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ember
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 136022694871824436}
   - component: {fileID: 143397102753196772}
   - component: {fileID: 114958006426227498}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player2
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 4661212999842702}
   - component: {fileID: 198578850692592644}
   - component: {fileID: 199999024991718422}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224765550417162644}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
