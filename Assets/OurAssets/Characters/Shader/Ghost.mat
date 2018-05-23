@@ -21,7 +21,7 @@ Material:
     m_Floats:
     - _TileAmount: 3
     - _brightness: 1.5
-    - _fresnelamount: 0.89
+    - _fresnelamount: 0.68
     - _max: 0
     - _max_copy: 0
     - _min: 0
