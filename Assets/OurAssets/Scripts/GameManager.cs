@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     private int currentLevelCount;
     private static GameManager instance;
-    private FollowObjects camScript;
+    private FollowAlivePlayers camScript;
 
     private bool setupByMenu = false;
     private float fadeInAndOutTime;
@@ -78,11 +78,11 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        camScript = GameObject.FindGameObjectWithTag("MainCamera").transform.parent.GetComponent<FollowObjects>();
+        camScript = GameObject.FindGameObjectWithTag("MainCamera").transform.parent.GetComponent<FollowAlivePlayers>();
 
         if (camScript == null)
         {
-            camScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowObjects>();
+            camScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowAlivePlayers>();
         }
 
         firstUpdate = true;
