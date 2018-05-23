@@ -15,11 +15,35 @@ public class NextLevel : MonoBehaviour
 
     void Update()
     {
-        if (player1In == true && player2In == true)
+        // P1 alive and in 
+        if (gm.Player1GO.GetComponent<PlayerController>().IsAlive && player1In == true)
         {
-            gm.ChangeLevel();
-            player1In = false;
-            player2In = false;
+            // p2 dead
+            if (gm.Player2GO.GetComponent<PlayerController>().IsAlive == false)
+            {
+                gm.ChangeLevel();
+                player1In = false;
+                player2In = false;
+            }
+            // p2 alive and in
+            else if (player2In == true)
+            {
+                gm.ChangeLevel();
+                player1In = false;
+                player2In = false;
+            }
+        }
+        // P1 not alive or not in
+        // P2 alive and in
+        else if (gm.Player2GO.GetComponent<PlayerController>().IsAlive && player2In == true)
+        {
+            // P1 dead
+            if (gm.Player1GO.GetComponent<PlayerController>().IsAlive == false)
+            {
+                gm.ChangeLevel();
+                player1In = false;
+                player2In = false;
+            }
         }
     }
 
