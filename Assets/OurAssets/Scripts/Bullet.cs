@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] GameObject emptyJarPrefab;
     [SerializeField] GameObject enemyJarPrefab;
     [SerializeField] GameObject destroyParticlesPrefab = null;
+    [SerializeField] GameObject catchEnemyParticle = null;
 
     bool isAlive = true;
 
@@ -26,18 +27,21 @@ public class Bullet : MonoBehaviour
             {
                 // Create a empty jar
                 Instantiate(emptyJarPrefab, transform.position + gameObject.GetComponent<Rigidbody>().velocity.normalized * -0.5f, emptyJarPrefab.transform.rotation);
+                // Do some particles
+                if (destroyParticlesPrefab != null)
+                    Instantiate(destroyParticlesPrefab, transform.position, destroyParticlesPrefab.transform.rotation);
             }
 
             if (other.tag == "Enemy")
             {
+                // Do some particles
+                if (catchEnemyParticle != null)
+                    Instantiate(catchEnemyParticle, transform.position, catchEnemyParticle.transform.rotation);
                 other.gameObject.SetActive(false);
                 GameObject newJar = Instantiate(enemyJarPrefab, transform.position, enemyJarPrefab.transform.rotation);
                 newJar.GetComponent<EnemyJar>().Startup(other.gameObject);
             }
 
-            // Do some particles
-            if (destroyParticlesPrefab != null)
-                Instantiate(destroyParticlesPrefab, transform.position, destroyParticlesPrefab.transform.rotation);
             // Destroy this bullet
             Destroy(gameObject);
             IsAlive = false;
