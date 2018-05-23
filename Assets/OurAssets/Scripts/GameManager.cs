@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject player1Prefab;
     [SerializeField] GameObject player2Prefab;
 
+    [SerializeField] List<AudioClip> audioClips = new List<AudioClip>();
+
     private GameObject player1GO;
     private GameObject player2GO;
 
@@ -47,6 +49,8 @@ public class GameManager : MonoBehaviour
     private float fadeInAndOutTime;
 
     private Canvas pauseCanvas;
+
+    private AudioSource audioPlayer;
 
     #region gets and sets
     public GameState CurrentGameState
@@ -95,6 +99,7 @@ public class GameManager : MonoBehaviour
         restartGame = false;
         pauseCanvas = GameObject.Find("PauseCanvas").GetComponent<Canvas>();
 
+        audioPlayer = gameObject.GetComponent<AudioSource>();
     }
 
 
@@ -159,7 +164,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PlayAudio(string clipName)
+    {
+        foreach (var clip in audioClips)
+        {
+            if (clip.name == clipName)
+            {
+                audioPlayer.clip = clip;
+            }
+        }
 
+        if (audioPlayer.clip != null)
+        {
+            audioPlayer.Play();
+        }
+
+
+    }
 
     private void UpdateGameState()
     {
