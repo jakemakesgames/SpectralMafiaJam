@@ -90,10 +90,11 @@ public class GameManager : MonoBehaviour
 
         if (setupByMenu == false && currentGameState == GameState.GAME_STATE)
             player1GO = GameObject.FindGameObjectWithTag("Player");
+
         fadeInAndOutTime = 0;
         restartGame = false;
-
         pauseCanvas = GameObject.Find("PauseCanvas").GetComponent<Canvas>();
+
     }
 
 
@@ -151,9 +152,6 @@ public class GameManager : MonoBehaviour
             case GameState.GAMEOVER_STATE:
                 UpdateGameOverState();
                 break;
-            case GameState.PAUSE_STATE:
-                UpdatePause();
-                break;
 
             default:
                 Assert.IsTrue(true, "GameState is default");
@@ -162,10 +160,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void UpdatePause()
-    {
-
-    }
 
     private void UpdateGameState()
     {
@@ -203,7 +197,10 @@ public class GameManager : MonoBehaviour
     private void UpdateGameOverState()
     {
         if (firstUpdate == true)
+        {
+            StartCoroutine(EndGame());
             firstUpdate = false;
+        }
     }
 
 
@@ -226,6 +223,13 @@ public class GameManager : MonoBehaviour
         currentLevel = levels.transform.GetChild(currentLevelCount).gameObject;
         currentLevel.SetActive(true);
 
+
+        if (currentLevel == levels.transform.GetChild(levels.transform.childCount - 1))
+        {
+            currentGameState = GameState.GAMEOVER_STATE;
+            return;
+        }
+
         if (player1GO != null)
         {
             player1GO.transform.position = CurrentLevel.transform.GetChild(0).position;
@@ -247,6 +251,11 @@ public class GameManager : MonoBehaviour
         fadeOut = false;
     }
 
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(0);
+    }
 
     public void Player1Button()
     {
@@ -273,23 +282,26 @@ public class GameManager : MonoBehaviour
 
         ChangeLevel();
     }
-    
+
     public void Pause()
     {
         if (currentLevel != levels.transform.GetChild(0).gameObject)
         {
-            if (currentGameState == GameState.GAME_STATE)
+            if (pauseCanvas != null)
             {
-                Time.timeScale = 0;
-                pauseCanvas.enabled = true;
-                currentGameState = GameState.PAUSE_STATE;
+                if (currentGameState == GameState.GAME_STATE)
+                {
+                    Time.timeScale = 0;
+                    pauseCanvas.enabled = true;
+                    currentGameState = GameState.PAUSE_STATE;
 
-            }
-            else if (currentGameState == GameState.PAUSE_STATE)
-            {
-                Time.timeScale = 1;
-                pauseCanvas.enabled = false;
-                currentGameState = GameState.GAME_STATE;
+                }
+                else if (currentGameState == GameState.PAUSE_STATE)
+                {
+                    Time.timeScale = 1;
+                    pauseCanvas.enabled = false;
+                    currentGameState = GameState.GAME_STATE;
+                }
             }
         }
     }
