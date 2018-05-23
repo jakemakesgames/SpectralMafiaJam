@@ -99,6 +99,12 @@ public class GameManager : MonoBehaviour
         restartGame = false;
         pauseCanvas = GameObject.Find("PauseCanvas").GetComponent<Canvas>();
 
+        foreach(var clip in audioClips)
+        {
+            Debug.Log(clip.name);
+        }
+
+
         audioPlayer = gameObject.GetComponent<AudioSource>();
     }
 

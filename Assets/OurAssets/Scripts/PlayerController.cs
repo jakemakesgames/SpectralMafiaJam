@@ -97,7 +97,10 @@ public class PlayerController : MonoBehaviour
         canShoot = Physics.CheckSphere(bulletSpawnTransform.position - bulletSpawnTransform.forward * 0.5f, 0.5f, LayerMask.GetMask("Collider")) == false;
 
         if (canShoot && shootTimer <= 0 && (XCI.GetButtonDown(shootButton, controllerNumber) || XCI.GetAxis(XboxAxis.RightTrigger, controllerNumber) > 0))
+        {
             Shoot();
+            GameManager.Instance.PlayAudio("Shoot");
+        }
         else
             shootTimer -= Time.deltaTime;
 

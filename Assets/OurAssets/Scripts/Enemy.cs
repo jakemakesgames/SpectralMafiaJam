@@ -90,6 +90,7 @@ public class Enemy : MonoBehaviour
                         {
                             // Create a bullet
                             GameObject newBullet = Instantiate(enemyBulletPrefab, bulletSpawnTransform.position, transform.rotation);
+                            GameManager.Instance.PlayAudio("Shoot");
                             newBullet.GetComponent<EnemyBullet>().Damage = enemyScritableObject.DamageToPlayer;
                             newBullet.GetComponent<Rigidbody>().AddForce(vecBetween.normalized * bulletSpeed, ForceMode.VelocityChange);
                         }
