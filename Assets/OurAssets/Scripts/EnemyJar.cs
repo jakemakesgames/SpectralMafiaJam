@@ -6,15 +6,19 @@ public class EnemyJar : MonoBehaviour
 {
 
     [SerializeField] float trappedTime = 5;
+    [SerializeField] float showFullWait = 0.8f;
 
     GameObject containedEnemy = null;
 
     float timer = 1000;
+    float showFullTimer = 1000;
 
     public void Startup(GameObject enemy)
     {
         containedEnemy = enemy;
         timer = trappedTime;
+        showFullTimer = showFullWait;
+        transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void PickedUp()
@@ -41,6 +45,13 @@ public class EnemyJar : MonoBehaviour
             }
             else
                 timer -= Time.deltaTime;
+            if (showFullTimer < 0)
+            {
+                // Show the sphere in the jar
+                transform.GetChild(0).gameObject.SetActive(true);
+            }
+            else
+                showFullTimer -= Time.deltaTime;
         }
     }
 
