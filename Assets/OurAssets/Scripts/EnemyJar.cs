@@ -7,6 +7,7 @@ public class EnemyJar : MonoBehaviour
 
     [SerializeField] float trappedTime = 5;
     [SerializeField] float showFullWait = 0.8f;
+    [SerializeField] GameObject escapePatriclePrefab = null;
 
     GameObject containedEnemy = null;
 
@@ -40,6 +41,9 @@ public class EnemyJar : MonoBehaviour
             {
                 // Respawn the enemy
                 containedEnemy.SetActive(true);
+                // Create a escape particle
+                if (escapePatriclePrefab != null)
+                    Instantiate(escapePatriclePrefab, transform.position, escapePatriclePrefab.transform.rotation);
                 // Destroy this jar
                 Destroy(gameObject);
             }
