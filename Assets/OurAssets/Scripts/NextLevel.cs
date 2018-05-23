@@ -18,6 +18,8 @@ public class NextLevel : MonoBehaviour
         if (player1In == true && player2In == true)
         {
             gm.ChangeLevel();
+            player1In = false;
+            player2In = false;
         }
     }
 
