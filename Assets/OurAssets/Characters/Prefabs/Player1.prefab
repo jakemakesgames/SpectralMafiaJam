@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 223457923167716936}
   - component: {fileID: 114707934989172438}
   - component: {fileID: 114363057462609462}
-  - component: {fileID: 114744805727163434}
+  - component: {fileID: 114631644033475362}
   m_Layer: 0
   m_Name: Player Canvas
   m_TagString: Untagged
@@ -808,6 +808,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllerNumber: 1
   shootButton: 9
+  pauseButton: 4
   bulletPrefab: {fileID: 1655437767094304, guid: 8d4f727adb7736b48a691ed6a4e649a5,
     type: 2}
   bulletSpawnTransform: {fileID: 4715819367535638}
@@ -849,6 +850,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114631644033475362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1584481774975400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1b30a28b39aa9439c392bed1c14bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114655774620234948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -945,17 +957,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114744805727163434
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1584481774975400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be1528761baeab94dbbf3d1be1f07b12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!120 &120842323898491440
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -18414,7 +18415,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 134
   m_TargetDisplay: 0
 --- !u!224 &224187366247290982
 RectTransform:
