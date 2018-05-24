@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     private FollowAlivePlayers camScript;
 
-    private bool setupByMenu = false;
     private float fadeInAndOutTime;
 
     private Canvas pauseCanvas;
@@ -91,9 +90,6 @@ public class GameManager : MonoBehaviour
         firstUpdate = true;
         fadeOut = false;
 
-        if (setupByMenu == false && currentGameState == GameState.GAME_STATE)
-            player1GO = GameObject.FindGameObjectWithTag("Player");
-
         fadeInAndOutTime = 0;
         restartGame = false;
         pauseCanvas = GameObject.Find("PauseCanvas").GetComponent<Canvas>();
@@ -107,16 +103,12 @@ public class GameManager : MonoBehaviour
         audioPlayer = gameObject.GetComponent<AudioSource>();
     }
 
-
     public void ChangeLevel()
     {
         fadeOut = true;
         currentLevelCount++;
-        //  fadeImage.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
         camScript.Stop();
-        //Debug.Log("changing scene");
     }
-
 
     void Update()
     {
@@ -138,9 +130,6 @@ public class GameManager : MonoBehaviour
                     LoadLevel();
                 }
             }
-
-
-
         }
 
         if (fadeIn)
