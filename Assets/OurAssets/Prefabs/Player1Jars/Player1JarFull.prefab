@@ -229,6 +229,24 @@ MonoBehaviour:
   showFullWait: 0.8
   escapePatriclePrefab: {fileID: 1638325529270902, guid: 68e8d5a29cb3e2e47b399cdcb4ed20a7,
     type: 2}
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.9459205
+      value: 0.99996185
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!135 &135700492127749998
 SphereCollider:
   m_ObjectHideFlags: 1
