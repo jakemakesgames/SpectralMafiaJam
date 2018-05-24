@@ -5,15 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyData")]
 public class EnemyData : ScriptableObject
 {
-    [SerializeField] float movementSpeed;
-    [SerializeField] int damageToPlayer;
-    [SerializeField] float attackCD;
-    [SerializeField] float attackRange;
-    [SerializeField] bool ranged;
+    [SerializeField] float movementSpeed = 0;
+    [SerializeField] int damageToPlayer = 0;
+    [SerializeField] float attackCD = 0;
+    [SerializeField] float attackRange = 0;
+    [SerializeField] bool ranged = false;
 
     //gets 
     #region gets & sets
-    
+
     public float MovementSpeed
     {
         get

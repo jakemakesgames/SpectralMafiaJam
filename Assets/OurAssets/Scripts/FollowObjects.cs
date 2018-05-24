@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FollowObjects : MonoBehaviour
 {
-    [SerializeField] List<GameObject> objects;
+    [SerializeField] List<GameObject> objects = null;
 
     [SerializeField] float speed = 5;
 

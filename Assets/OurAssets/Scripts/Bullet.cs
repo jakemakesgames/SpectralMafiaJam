@@ -5,9 +5,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    [SerializeField] GameObject emptyJarPrefab;
-    [SerializeField] GameObject enemyJarPrefab;
-    [SerializeField] GameObject destroyParticlesPrefab = null;
+    [SerializeField] GameObject emptyJarPrefab = null;
+    [SerializeField] GameObject enemyJarPrefab = null;
+    [SerializeField] GameObject HitWallParticlePrefab = null;
     [SerializeField] GameObject catchEnemyParticle = null;
 
     bool isAlive = true;
@@ -29,8 +29,8 @@ public class Bullet : MonoBehaviour
                 // Create a empty jar
                 Instantiate(emptyJarPrefab, transform.position + gameObject.GetComponent<Rigidbody>().velocity.normalized * -0.5f, emptyJarPrefab.transform.rotation);
                 // Do some particles
-                if (destroyParticlesPrefab != null)
-                    Instantiate(destroyParticlesPrefab, transform.position, destroyParticlesPrefab.transform.rotation);
+                if (HitWallParticlePrefab != null)
+                    Instantiate(HitWallParticlePrefab, transform.position, HitWallParticlePrefab.transform.rotation);
             }
 
             if (other.tag == "Enemy")

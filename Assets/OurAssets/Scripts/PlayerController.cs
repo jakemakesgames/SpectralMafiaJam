@@ -9,11 +9,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public XboxController controllerNumber = 0;
     [SerializeField] XboxButton shootButton = XboxButton.RightBumper;
     [SerializeField] XboxButton pauseButton = XboxButton.Start;
-    [SerializeField] GameObject bulletPrefab;
-    [SerializeField] Transform bulletSpawnTransform;
+    [SerializeField] bool useKeyboardControls = true;
+    [SerializeField] GameObject bulletPrefab = null;
+    [SerializeField] Transform bulletSpawnTransform = null;
 
-    [SerializeField] GameObject backPack;
-    [SerializeField] ParticleSystem shootParticle;
+    [SerializeField] GameObject backPack = null;
+    [SerializeField] ParticleSystem shootParticle = null;
 
     [SerializeField] float moveSpeed = 1;
     [SerializeField] float sprintSpeed = 8;
@@ -33,7 +34,6 @@ public class PlayerController : MonoBehaviour
     CharacterController cc;
     LineRenderer lineRenderer;
     Animator animator;
-
 
     Vector3 bodyRotation;
 
@@ -85,20 +85,44 @@ public class PlayerController : MonoBehaviour
         if (isAlive == false)
             return;
 
+        canShoot = Physics.CheckSphere(bulletSpawnTransform.position - bulletSpawnTransform.forward * 0.5f, 0.5f, LayerMask.GetMask("Collider")) == false;
+
         Movement();
 
         UpdateLineRenderer();
 
-        if (XCI.GetButtonDown(pauseButton, controllerNumber))
+        // Use pc controls
+        if (useKeyboardControls)
         {
-            GameManager.Instance.Pause();
+            // Pause button
+            if (useKeyboardControls && (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)))
+            {
+                GameManager.Instance.Pause();
+            }
+        }
+        else
+        {
+            // Pause button
+            if (XCI.GetButtonDown(pauseButton, controllerNumber))
+            {
+                GameManager.Instance.Pause();
+            }
         }
 
-        canShoot = Physics.CheckSphere(bulletSpawnTransform.position - bulletSpawnTransform.forward * 0.5f, 0.5f, LayerMask.GetMask("Collider")) == false;
-
-        if (canShoot && shootTimer <= 0 && (XCI.GetButtonDown(shootButton, controllerNumber) || XCI.GetAxis(XboxAxis.RightTrigger, controllerNumber) > 0))
+        if (canShoot && shootTimer <= 0)
         {
-            Shoot();
+            if (useKeyboardControls)
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                    Shoot();
+            }
+            else
+            {
+                if (XCI.GetButtonDown(shootButton, controllerNumber) || XCI.GetAxis(XboxAxis.RightTrigger, controllerNumber) > 0)
+                {
+                    Shoot();
+                }
+            }
         }
         else
             shootTimer -= Time.deltaTime;
@@ -158,41 +182,82 @@ public class PlayerController : MonoBehaviour
         // Make the player fall
         cc.Move(new Vector3(0, -fallSpeed * Time.deltaTime, 0));
 
-        Vector3 leftStickDirection = Vector3.zero;
-        //// PC Movement
-        //if (Input.GetKey(KeyCode.W))
-        //    movement.z++;
-        //if (Input.GetKey(KeyCode.S))
-        //    movement.z--;
-        //if (Input.GetKey(KeyCode.D))
-        //    movement.x++;
-        //if (Input.GetKey(KeyCode.A))
-        //    movement.x--;
-
-        // Left stick movement
-        leftStickDirection.x = XCI.GetAxis(XboxAxis.LeftStickX, controllerNumber);
-        leftStickDirection.z = XCI.GetAxis(XboxAxis.LeftStickY, controllerNumber);
-        // Make sure the movement is normalized
-        leftStickDirection = leftStickDirection.normalized;
-
-        // Right stick
-        Vector3 rightStickDirection = Vector3.zero;
-        rightStickDirection.x = XCI.GetAxis(XboxAxis.RightStickX, controllerNumber);
-        rightStickDirection.z = XCI.GetAxis(XboxAxis.RightStickY, controllerNumber);
-
-        Vector3 targetRotation = leftStickDirection;
+        Vector3 moveDirection = Vector3.zero;
+        Vector3 lookDirection = Vector3.zero;
         bool sprint = true;
-        // Prioritize right stick for rotation
-        if (rightStickDirection.x != 0 || rightStickDirection.z != 0)
+        if (useKeyboardControls)
         {
-            targetRotation = rightStickDirection;
-            sprint = false;
+            // PC Movement
+            if (Input.GetKey(KeyCode.W))
+                moveDirection.z++;
+            if (Input.GetKey(KeyCode.S))
+                moveDirection.z--;
+            if (Input.GetKey(KeyCode.D))
+                moveDirection.x++;
+            if (Input.GetKey(KeyCode.A))
+                moveDirection.x--;
+
+            // Sprint if left shift is down
+            sprint = Input.GetKey(KeyCode.LeftShift);
+
+
+            // Raycast to find the look direction
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Plane plane = new Plane(Vector3.up, transform.position);
+            float enter;
+            // If the ray hit
+            if (plane.Raycast(ray, out enter))
+            {
+                // Get the point in the ray that hit the plane
+                Vector3 hitPos = ray.GetPoint(enter);
+                // Set the look direction from the player to that position
+                lookDirection = hitPos - transform.position;
+                lookDirection.y = 0;
+            }
+
+            // Can't shoot when sprinting && look in the direction of movement
+            if (sprint == true)
+            {
+                lookDirection = moveDirection;
+                canShoot = false;
+            }
         }
-        bodyRotation = Vector3.Lerp(bodyRotation, targetRotation, rotateSpeed * Time.deltaTime);
+        else
+        {
+            Vector3 leftStickDirection = Vector3.zero;
+            // Left stick movement
+            leftStickDirection.x = XCI.GetAxis(XboxAxis.LeftStickX, controllerNumber);
+            leftStickDirection.z = XCI.GetAxis(XboxAxis.LeftStickY, controllerNumber);
+            // Make sure the movement is normalized
+            leftStickDirection = leftStickDirection.normalized;
+            // Set the move direction to the left stick
+            moveDirection = leftStickDirection;
+            // Set the look direction to the left stick
+            lookDirection = leftStickDirection;
+
+            // Right stick
+            Vector3 rightStickDirection = Vector3.zero;
+            rightStickDirection.x = XCI.GetAxis(XboxAxis.RightStickX, controllerNumber);
+            rightStickDirection.z = XCI.GetAxis(XboxAxis.RightStickY, controllerNumber);
+            // Prioritize right stick for rotation
+            if (rightStickDirection.x != 0 || rightStickDirection.z != 0)
+            {
+                lookDirection = rightStickDirection;
+                sprint = false;
+            }
+
+        }
+
+        // Normalize the vectors
+        moveDirection = moveDirection.normalized;
+        lookDirection = lookDirection.normalized;
+
+        // Lerp the looking
+        bodyRotation = Vector3.Lerp(bodyRotation, lookDirection, rotateSpeed * Time.deltaTime);
         // Rotate the player
         transform.LookAt(transform.position + bodyRotation);
         // Move the player
-        cc.Move(leftStickDirection * (sprint ? sprintSpeed : moveSpeed) * Time.deltaTime);
+        cc.Move(moveDirection * (sprint ? sprintSpeed : moveSpeed) * Time.deltaTime);
     }
 
     public void TakeDamage(int dmg)
@@ -215,10 +280,16 @@ public class PlayerController : MonoBehaviour
             // Do some extra stuff if the jar isn't empty
             if (empty == false)
             {
+                // Add health
                 health += pickUpHealth;
-                if (health > maxHealth) health = maxHealth;
+                // Cap Health
+                if (health > maxHealth)
+                    health = maxHealth;
+                // Add a second jar
                 jarCount++;
-                if (jarCount > maxJars) jarCount = maxJars;
+                // Cap the jar count
+                if (jarCount > maxJars)
+                    jarCount = maxJars;
                 // Kill count ++
             }
             JarCountUpdate();

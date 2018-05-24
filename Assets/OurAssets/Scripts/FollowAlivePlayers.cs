@@ -5,7 +5,7 @@ using UnityEngine;
 public class FollowAlivePlayers : MonoBehaviour
 {
 
-    [SerializeField] List<GameObject> players;
+    [SerializeField] List<GameObject> players = null;
 
     [SerializeField] float speed = 5;
 

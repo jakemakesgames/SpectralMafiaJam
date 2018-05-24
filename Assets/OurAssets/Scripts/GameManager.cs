@@ -14,12 +14,11 @@ public class GameManager : MonoBehaviour
         PAUSE_STATE
     };
 
+    [SerializeField] float fadeInSpeed = 1;
+    [SerializeField] float fadeOutSpeed = 1;
 
-    [SerializeField] float fadeInSpeed;
-    [SerializeField] float fadeOutSpeed;
-
-    [SerializeField] GameObject player1Prefab;
-    [SerializeField] GameObject player2Prefab;
+    [SerializeField] GameObject player1Prefab = null;
+    [SerializeField] GameObject player2Prefab = null;
 
     [SerializeField] List<AudioClip> audioClips = new List<AudioClip>();
 

@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] EnemyData enemyScritableObject;
+    [SerializeField] EnemyData enemyScritableObject = null;
 
-    [SerializeField] GameObject enemyBulletPrefab;
-    [SerializeField] float bulletSpeed;
-    [SerializeField] Transform bulletSpawnTransform;
+    [SerializeField] GameObject enemyBulletPrefab = null;
+    [SerializeField] float bulletSpeed = 0;
+    [SerializeField] Transform bulletSpawnTransform = null;
 
-    [SerializeField] float rotationSpeed;
+    [SerializeField] float rotationSpeed = 5;
 
     [SerializeField] float agroRange = 10;
 

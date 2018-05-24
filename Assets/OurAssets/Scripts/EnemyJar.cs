@@ -39,7 +39,8 @@ public class EnemyJar : MonoBehaviour
         {
             if (timer < 0)
             {
-                // Respawn the enemy
+                // Respawn the enemy with the position of this jar
+                containedEnemy.transform.position = transform.position;
                 containedEnemy.SetActive(true);
                 // Create a escape particle
                 if (escapePatriclePrefab != null)
@@ -59,7 +60,7 @@ public class EnemyJar : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {

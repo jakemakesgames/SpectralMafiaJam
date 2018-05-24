@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemySpawnTrigger : MonoBehaviour
 {
-    [SerializeField] GameObject meleeEnemyPrefab;
-    [SerializeField] GameObject rangedEnemyPrefab;
+    [SerializeField] GameObject meleeEnemyPrefab = null;
+    [SerializeField] GameObject rangedEnemyPrefab = null;
     [SerializeField] int rangedSpawnCount = 0;
     [SerializeField] int meleeSpawnCount = 0;
 
